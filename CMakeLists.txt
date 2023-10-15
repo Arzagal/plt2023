@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.18)
-project (plt)
+project (plt2023)
 
 # CMP0074 policy enable find_* to use <PackageName>_ROOT variables to find
 # packages.
