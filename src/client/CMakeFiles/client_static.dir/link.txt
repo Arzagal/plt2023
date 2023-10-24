@@ -1,2 +1,0 @@
-/usr/bin/ar qc libclient_static.a CMakeFiles/client_static.dir/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp.o CMakeFiles/client_static.dir/client/Exemple.cpp.o CMakeFiles/client_static.dir/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
-/usr/bin/ranlib libclient_static.a
