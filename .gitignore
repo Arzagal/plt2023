@@ -7,3 +7,5 @@ nbproject
 .idea
 *.autosave
 
+src/*/*.h
+src/*/*/*.h
