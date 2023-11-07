@@ -4,4 +4,5 @@
 #include "Card.h"
 namespace state {
     void Card::activate_effect() {}
+    Card::Card() {}
 }

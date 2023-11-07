@@ -1,0 +1,14 @@
+//
+// Created by louis on 11/7/23.
+//
+#include <boost/test/unit_test.hpp>
+#include "../../src/shared/state/Vision.h"
+namespace state {
+    BOOST_AUTO_TEST_CASE(firstVisionTest){
+            Vision vision = Vision();
+            Player target = Player();
+            vision.choose_target (target);
+            int get_id = vision.get_id();
+            BOOST_CHECK(1);
+    }
+}

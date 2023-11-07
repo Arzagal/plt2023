@@ -1,0 +1,14 @@
+//
+// Created by louis on 11/7/23.
+//
+#include <boost/test/unit_test.hpp>
+#include "../../src/shared/state/DeckVision.h"
+namespace state {
+    BOOST_AUTO_TEST_CASE(firstDeckVisionTest){
+            int card_id = 0;
+            DeckVision dv = DeckVision();
+            dv.remove (card_id);
+            dv.draw ();
+            BOOST_CHECK(1);
+    }
+}
