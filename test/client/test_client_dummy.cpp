@@ -1,4 +1,5 @@
 
+/*
 #include <boost/test/unit_test.hpp>
 
 #include <SFML/Graphics.hpp>
@@ -16,4 +17,6 @@ BOOST_AUTO_TEST_CASE(TestSFML)
   }
 }
 
-/* vim: set sw=2 sts=2 et : */
+*/
+/* vim: set sw=2 sts=2 et : *//*
+

@@ -4,7 +4,7 @@
 #include "PlayerPosition.h"
 
 namespace render{
-    PlayerPosition::PlayerPosition(float X, float Y, int playerNum) {
+    /*PlayerPosition::PlayerPosition(float X, float Y, int playerNum) {
         this->pixelX = X;
         this->pixelY = Y;
         this->playerNum = playerNum;
@@ -32,5 +32,5 @@ namespace render{
 
     void PlayerPosition::set_pixelY(float Y) {
         this->pixelY = Y;
-    }
+    }*/
 }

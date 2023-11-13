@@ -4,6 +4,7 @@
 #include <boost/test/unit_test.hpp>
 #include "../../src/client/render.h"
 
+/*
 namespace render {
     BOOST_AUTO_TEST_CASE(firstPlayerPos) {
         float X = 0;
@@ -20,4 +21,4 @@ namespace render {
         BOOST_CHECK_EQUAL(Y, Y2);
         BOOST_CHECK_EQUAL(playerNum, playerNum2);
     }
-}
+}*/
