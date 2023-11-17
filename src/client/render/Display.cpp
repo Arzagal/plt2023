@@ -6,7 +6,7 @@
 namespace render {
 
     Display::Display(sf::RenderWindow &win, sf::Sprite bg)
-            : window(win), background(bg) {
+            : window(&win), background(bg) {
         this->gameState=new state::Game();
         this->background=bg;
     }
@@ -21,9 +21,9 @@ namespace render {
      *
      * */
     void Display::refresh(){
-        window.close();
-        window.draw(background);
-
+        //window->close();
+        window->draw(background);
+        window->display();
     }
 
 }
