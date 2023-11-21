@@ -32,7 +32,10 @@ namespace render {
     }
 
     sf::Texture Display::getCardImg(int cardId) {
-
+        sf::Texture texture;
+        if(cardId<18){
+            texture.loadFromFile("../ShadowHunter_Card/Light_Card_" + std::to_string(cardId) + ".png");
+        }
     }
 
     void Display::draw_wounds(int PlayerNum) {
