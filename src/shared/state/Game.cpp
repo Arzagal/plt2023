@@ -8,7 +8,7 @@ namespace state{
     void Game::add_player (){}
     void Game::new_turn (){}
     void Game::add_dmg (int target){}
-    void Game::draw (Card_type card_type){}
+    Card Game::draw (Card_type card_type){}
     State Game::get_state (){}
     void Game::start_game (){}
     void Game::move_player (Player player, int location){}

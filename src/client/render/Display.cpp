@@ -23,6 +23,11 @@ namespace render {
     void Display::refresh(){
         window->clear();
         window->draw(background);
+        for(int i = 0; i< this->gameState->get_number_player(); i++){
+            this->draw_wounds(i);
+            this->draw_player_character(i);
+            this->draw_equipped_card(i);
+        }
         window->display();
     }
 
@@ -83,7 +88,7 @@ namespace render {
         this->draw(texture, size, position);
 
     }
-    void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position) {
+    void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position) { //Function to draw the given image on a certain position
         sf::Sprite sprite;
         sprite.setTexture(texture);
         sprite.setScale(size.x / texture.getSize().x, size.y/ texture.getSize().y);
