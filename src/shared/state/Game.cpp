@@ -21,19 +21,36 @@ namespace state{
     }
     void Game::add_dmg (int target){
     }
-    Card Game::draw (Card_type card_type){}
+    Card* Game::draw (Card_type card_type){
+        Card* res;
+        if(card_type == DARK){
+            res = this->deckD->draw();
+        }
+        else if(card_type == LIGHT){
+            res = this->deckL->draw();
+        }
+
+        else {
+            res = this->deckV->remove();
+        }
+        return res;
+    }
 
     State Game::get_state (){
         return this->state;
     }
 
-    void Game::start_game (){}
-
-    void Game::move_player (int player, int location){
-        this->playerListe[]
+    void Game::start_game (){
+        this->deckL = new DeckLight();
     }
 
-    void Game::active_board_effect (int active_player){}
+    void Game::move_player (int player, int location){
+        this->board->move_player(player, location);
+    }
+
+    void Game::active_board_effect (int active_player){
+        this->board->get_effect(this->board->get_location(active_player));
+    }
 
     void Game::add_wound (int player, int value){
         this->damage_count[player] += value;
@@ -68,6 +85,6 @@ namespace state{
     }
 
     int Game::get_player_location(int PlayerNum) {
-//        return this->playerListe[PlayerNum];
+        return this->board->get_location(PlayerNum);
     }
 }

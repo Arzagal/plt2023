@@ -6,7 +6,7 @@
 namespace state{
     Player::Player ( ){}
     void Player::move (){}
-    void Player::attack (Player target){}
+    void Player::attack (int target){}
     void Player::active_character_effect (){}
     void Player::show_character_effect (){}
     void Player::reveal (){}

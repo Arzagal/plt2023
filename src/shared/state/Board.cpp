@@ -10,13 +10,13 @@ namespace state {
         int i;
     }
 
-    void Board::move_player(Player player, int location) {
+    void Board::move_player(int player, int location) {
         int i;
     }
 
-    std::vector <Player> Board::get_neighbours(Player player) {
+    std::vector <int> Board::get_neighbours(int player) {
         int i;
-        std::vector <Player> res;
+        std::vector <int> res;
         return res;
     }
 
@@ -24,7 +24,7 @@ namespace state {
         int i;
     }
 
-    int Board::get_location(Player player) {
+    int Board::get_location(int player) {
         int res = 0;
         return res;
     }

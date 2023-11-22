@@ -23,11 +23,13 @@ int main(int argc,char* argv[])
     sf::Sprite bg;
     sf::Texture myTexture;
     myTexture.loadFromFile("../ShadowHunter_Card/Board/Board-1.png");
-    bg.setScale(400/myTexture.getSize().x,300/myTexture.getSize().x);
+    bg.setTexture(myTexture);
+    sf::Vector2f size = sf::Vector2f(600, 450);
+    bg.setScale(size.x/myTexture.getSize().x,size.y/myTexture.getSize().y);
     sf::FloatRect bounds = bg.getLocalBounds();
     bg.setOrigin(bounds.width / 2, bounds.height / 2);
     bg.setPosition(300, 225);
-    bg.setTexture(myTexture);
+
     render::Display display(window,  bg);
     //render::Const constants();
 
@@ -38,8 +40,8 @@ int main(int argc,char* argv[])
                 window.close();
             }
         }
-        window.clear();
         display.refresh();
     }
+
     return 0;
 }
