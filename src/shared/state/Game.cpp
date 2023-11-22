@@ -8,6 +8,7 @@ namespace state{
         this->state = Starting;
         this->turn = 0;
         this->player_number = 1;
+
     }
     void Game::add_player (){
         this->player_number++;
@@ -29,9 +30,11 @@ namespace state{
         else if(card_type == LIGHT){
             res = this->deckL->draw();
         }
-
-        else {
-            res = this->deckV->remove();
+        else if(card_type == VISION){
+            res = this->deckV->draw();
+        }
+        else{
+            res = nullptr;
         }
         return res;
     }
@@ -42,10 +45,18 @@ namespace state{
 
     void Game::start_game (){
         this->deckL = new DeckLight();
+        this->deckV = new DeckVision();
+        this->deckD = new DeckDark();
+
+        for(int j =0; j<this->player_number; j++){
+            Player player = Player(j);
+//            player.set_character();
+        }
     }
 
     void Game::move_player (int player, int location){
         this->board->move_player(player, location);
+
     }
 
     void Game::active_board_effect (int active_player){
