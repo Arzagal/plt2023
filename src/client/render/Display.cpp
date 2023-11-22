@@ -14,12 +14,7 @@ namespace render {
     state::Game *Display::getGameState() {
         return gameState;
     }
-    /*Ceci ne correspond pas au fonctionnement fnal de la méthode refresh()
-     * dans sa version finale elle sera appelée à intervalles réguliers
-     *
-     *
-     *
-     * */
+
     void Display::refresh(){
         window->clear();
         window->draw(background);
@@ -35,6 +30,14 @@ namespace render {
         sf::Texture texture;
         if(cardId<18){
             texture.loadFromFile("../ShadowHunter_Card/Light_Card_" + std::to_string(cardId) + ".png");
+        }
+        else if(cardId<34){
+            texture.loadFromFile("../ShadowHunter_Card/Shadow_Card_" + std::to_string(cardId-17) + ".png");
+
+        }
+        else if(cardId<50){
+            texture.loadFromFile("../ShadowHunter_Card/Vision_Card" + std::to_string(cardId-33) + ".png");
+
         }
     }
 
