@@ -9,14 +9,6 @@ namespace state{
         this->revealed = false;
         this->number = number;
     }
-    void Player::move (){
-
-    }
-
-
-    void Player::attack (int target){
-
-    }
 
     void Player::active_character_effect (){}
 
