@@ -1,6 +1,7 @@
 //
 // Created by louis on 10/24/23.
 //
+#include <algorithm>
 #include "Board.h"
 namespace state {
     Board::Board() {
@@ -11,12 +12,18 @@ namespace state {
     }
 
     void Board::move_player(int player, int location) {
-        int i;
+        this->player_location[player] = location;
     }
 
     std::vector <int> Board::get_neighbours(int player) {
-        int i;
+        int i = this->get_location(player);
+        std::vector<int>::iterator it;
+        it = std::find(this->player_location.begin(), this->player_location.end(), i);
         std::vector <int> res;
+        while (it !=this->player_location.end()){
+            res.push_back(it - this->player_location.begin());
+            it = std::find(it+1, this->player_location.end(), i);
+        }
         return res;
     }
 
@@ -25,7 +32,7 @@ namespace state {
     }
 
     int Board::get_location(int player) {
-        int res = 0;
+        int res = this->player_location[player];
         return res;
     }
 }
