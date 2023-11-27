@@ -6,7 +6,8 @@
 namespace state {
     BOOST_AUTO_TEST_CASE(firstVisionTest){
             Vision vision = Vision();
-            Player target = Player();
+            int num = 0;
+            Player target = Player(num);
             vision.choose_target (target);
             int get_id = vision.get_id();
             BOOST_CHECK(1);
