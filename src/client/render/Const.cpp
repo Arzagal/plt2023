@@ -119,6 +119,15 @@ namespace render{
         }
         std::cout << "\n";
     }
+    std::map<int, std::vector<PlayerPosition>> Const::get_woundLocations() {
+        return woundLocations;
+    }
+    std::map<int, std::vector<PlayerPosition>> Const::get_playerOnBoard() {
+        return playerOnBoard;
+    }
+    std::vector<CardPosition> Const::get_cardsOnBoard() {
+        return cardsOnBoard;
+    }
 
 
 }
