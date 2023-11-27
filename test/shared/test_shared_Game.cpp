@@ -5,7 +5,7 @@
 #include "../../src/shared/state/Game.h"
 using namespace state;
 BOOST_AUTO_TEST_CASE(firstGameTest){
-        Game game =  Game();
+        Game game = Game();
         int target = 0;
         int value = 0;
         int num1 = 0;
@@ -14,10 +14,11 @@ BOOST_AUTO_TEST_CASE(firstGameTest){
         Player player = Player(num1);
         int location = 0;
         Player active_player = Player(num1);
-        Player attacked = Player(num2);
-        Player attacking = Player(num1);
 
-        game.add_player ();
+
+        game.add_player();
+        game.add_player();
+        game.start_game();
         game.new_turn ();
         game.add_dmg (target);
         game.draw (card_type);
@@ -27,6 +28,7 @@ BOOST_AUTO_TEST_CASE(firstGameTest){
         game.active_board_effect (active_player.get_number());
         game.add_wound (player.get_number(), value);
         game.heal (player.get_number(), value);
-        game.attack (attacking.get_number(), attacked.get_number());
-        BOOST_CHECK(1);
+        game.attack (0, 1);
+
+        BOOST_TEST(1);
 }

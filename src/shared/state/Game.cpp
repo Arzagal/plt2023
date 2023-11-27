@@ -8,7 +8,7 @@ namespace state{
         this->state = Starting;
         this->turn = 0;
         this->player_number = 1;
-
+        this->damage_count = std::vector<int>();
     }
     void Game::add_player (){
         this->player_number++;
@@ -47,9 +47,11 @@ namespace state{
         this->deckL = new DeckLight();
         this->deckV = new DeckVision();
         this->deckD = new DeckDark();
-
+        this->board = new Board(player_number);
         for(int j =0; j<this->player_number; j++){
             Player player = Player(j);
+            this->playerListe.push_back(player);
+            this->damage_count.push_back(j);
 //            player.set_character();
         }
     }

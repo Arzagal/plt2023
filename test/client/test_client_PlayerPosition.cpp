@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(FirstPlayPosi){
     BOOST_TEST(num1 == pp.getPlayerNum());
     float y2 = 0.5;
     float x2 = 0.5;
-    float num2 = 0.5;
+    int num2 = 0.5;
     pp.setPixelY(y2);
     pp.setPixelX(x2);
     pp.setPlayerNum(num2);

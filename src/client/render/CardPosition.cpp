@@ -26,6 +26,10 @@ namespace render{
         this->pixelY=Y;
     }
 
+    void CardPosition::setAngle(float angle) {
+        this->angle = angle;
+    }
+
     sf::Vector2f CardPosition::get_position() {
         sf::Vector2f res = sf::Vector2f(this->pixelX, this->pixelY);
         return res;

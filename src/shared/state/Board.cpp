@@ -4,8 +4,11 @@
 #include <algorithm>
 #include "Board.h"
 namespace state {
-    Board::Board() {
-        int i =0;
+    Board::Board(int len) {
+        this->player_location = std::vector<int>();
+        for(int i = 0; i <len; i++){
+            this->player_location.push_back(0);
+        }
     }
     void Board::random_init() {
         int i;
