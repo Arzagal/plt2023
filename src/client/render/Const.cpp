@@ -43,9 +43,13 @@ namespace render{
             if (line == "Cartes") {
                 std::cout<<"into Cartes"<<std::endl;
                 while (getline(file, line) && !line.empty()) {
+                    std::cout<<"into the while"<<std::endl;
                     std::istringstream iss(line);
                     float pixelX, pixelY, angle;
                     iss >> pixelX >> pixelY >> angle;
+                    std::cout<<"checking vars"<<std::endl;
+                    std::cout<<pixelX<<pixelY<<angle<<std::endl;
+                    std::cout<<"checking vars"<<std::endl;
                     cardsOnBoard.emplace_back(pixelX, pixelY, angle);
                 }
             } else if (line == "Blessures") {
