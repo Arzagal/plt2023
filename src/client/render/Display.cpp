@@ -23,7 +23,7 @@ namespace render {
     void Display::refresh(){
         //window->close();
         window->draw(background);
-        window->display();
+        //window->display();
     }
 
 }
