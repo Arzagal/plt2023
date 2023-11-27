@@ -46,26 +46,26 @@ namespace render {
         sf::Vector2f size = sf::Vector2f(10,10);
 
         pawnTexture.loadFromFile("../ShadowHunter_Card/Board/Pawn" + std::to_string(PlayerNum) + ".png");
-        sf::Vector2f position = myLocations.get_woundLocations().at(gameState->get_wounds(PlayerNum))[PlayerNum].get_position();
-        this->draw(pawnTexture, size, position);
+//        sf::Vector2f position = myLocations.get_woundLocations().at(gameState->get_wounds(PlayerNum))[PlayerNum].get_position();
+//        this->draw(pawnTexture, size, position);
     }
 
     void Display::draw_equipped_card(int PlayerNum) {
         for(int i = 0; i< gameState->get_Player_liste()[PlayerNum].get_equipped_card().size(); i++){
             int id;
-            if(gameState->get_Player_liste()[PlayerNum].get_equipped_card()[i].get_card_type() == 0){
-                int output = 1;
-                id = gameState->get_Player_liste()[PlayerNum].get_equipped_card()[i].get_id() + output;
-            }
-            else{
-                int output = 2;
-                id = gameState->get_Player_liste()[PlayerNum].get_equipped_card()[i].get_id() + output;
-            }
+//            if(gameState->get_Player_liste()[PlayerNum].get_equipped_card()[i].get_card_type() == 0){
+//                int output = 1;
+//                id = gameState->get_Player_liste()[PlayerNum].get_equipped_card()[i].get_id() + output;
+//            }
+//            else{
+//                int output = 2;
+//                id = gameState->get_Player_liste()[PlayerNum].get_equipped_card()[i].get_id() + output;
+//            }
             sf::Texture texture = this->getCardImg(id);
             sf::Vector2f size = sf::Vector2f(62,100);
-            sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
-
-            this->draw(texture, size, position);
+//            sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
+//
+//            this->draw(texture, size, position);
         }
     }
 
@@ -76,8 +76,8 @@ namespace render {
 
         pawnTexture.loadFromFile("../ShadowHunter_Card/Board/Pawn" + std::to_string(PlayerNum) + ".png");
         sf::Vector2f position;
-        position = myLocations.get_playerOnBoard().at(id)[PlayerNum].get_position();
-        this->draw(pawnTexture, size, position);
+//        position = myLocations.get_playerOnBoard().at(id)[PlayerNum].get_position();
+//        this->draw(pawnTexture, size, position);
     }
 
     void Display::draw_playing_card(int CardId, int Cardtype) {
@@ -90,8 +90,8 @@ namespace render {
         }
         sf::Texture texture = this->getCardImg(id);
         sf::Vector2f size = sf::Vector2f(62,100);
-        sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
-        this->draw(texture, size, position);
+//        sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
+//        this->draw(texture, size, position);
 
     }
     void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position) { //Function to draw the given image on a certain position
