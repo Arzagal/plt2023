@@ -7,7 +7,7 @@
 // Fin test SFML
 
 #include <state.h>
-#include "render/Display.h"
+#include <render/Display.h>
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -41,7 +41,7 @@ void movePawns(float dx, float dy){
 }
 
 int main(int argc,char* argv[]){
-    // ... [Unchanged code for initialization and setup] ...
+    /*// ... [Unchanged code for initialization and setup] ...
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Jeu de societe",sf::Style::Fullscreen);
     sf::Texture cardText;
     sf::Sprite cardSprite;
@@ -132,6 +132,11 @@ int main(int argc,char* argv[]){
         }
 
         // ... [Unchanged code for rendering] ...
+    }*/
+    render::Const myConst;
+    myConst.printContents();
+    while (1){
+
     }
     return 0;
 }

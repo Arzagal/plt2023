@@ -5,13 +5,18 @@
 
 namespace render{
 
+    CardPosition::CardPosition(float X, float Y, float angle) {
+        this->pixelX=X;
+        this->pixelY=Y;
+        this->angle=angle;
+    }
     float CardPosition::getAngle() {
         return angle;
     }
     float CardPosition::getPixelX() {
         return pixelX;
     }
-    float CardPosition::getpixelY() {
+    float CardPosition::getPixelY() {
         return pixelY;
     }
     void CardPosition::setPixelX(float X) {

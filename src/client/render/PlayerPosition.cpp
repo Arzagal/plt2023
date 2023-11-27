@@ -4,33 +4,28 @@
 #include "PlayerPosition.h"
 
 namespace render{
-    /*PlayerPosition::PlayerPosition(float X, float Y, int playerNum) {
-        this->pixelX = X;
-        this->pixelY = Y;
-        this->playerNum = playerNum;
+    PlayerPosition::PlayerPosition(float X, float Y, float num) {
+        this->pixelX=X;
+        this->pixelY=Y;
+        this->playerNum=num;
     }
 
-    int PlayerPosition::get_playerNum() {
-        return this->playerNum;
+    void PlayerPosition::setPixelY(float Y) {
+        this->pixelY=Y;
     }
-
-    float PlayerPosition::get_pixelX() {
+    void PlayerPosition::setPixelX(float X) {
+        this->pixelX=X;
+    }
+    void PlayerPosition::setPlayerNum(int num) {
+        this->playerNum=num;
+    }
+    float PlayerPosition::getPixelX() {
         return this->pixelX;
     }
-
-    float PlayerPosition::get_pixelY() {
+    float PlayerPosition::getPixelY() {
         return this->pixelY;
     }
-
-    void PlayerPosition::set_playerNum(int playerNum) {
-        this->playerNum = playerNum;
+    int PlayerPosition::getPlayerNum() {
+        return this->playerNum;
     }
-
-    void PlayerPosition::set_pixelX(float X) {
-        this->pixelX = X;
-    }
-
-    void PlayerPosition::set_pixelY(float Y) {
-        this->pixelY = Y;
-    }*/
 }
