@@ -15,31 +15,6 @@
 using namespace std;
 using namespace sf;
 
-Sprite redPawnSprite;
-Sprite greenPawnSprite;
-Sprite bluePawnSprite;
-Sprite purplePawnSprite;
-
-void setPawns(float x, float y, float offset){
-    redPawnSprite.setPosition(x,y);
-    greenPawnSprite.setPosition(x+offset,y);
-    bluePawnSprite.setPosition(x+2*offset,y);
-    purplePawnSprite.setPosition(x+3*offset,y);
-}
-
-void movePawns(float dx, float dy){
-    redPawnSprite.move(dx, dy);
-    greenPawnSprite.move(dx, dy);
-    bluePawnSprite.move(dx, dy);
-    purplePawnSprite.move(dx, dy);
-
-    // Output the coordinates of each pawn
-    cout << "Red Pawn: (" << redPawnSprite.getPosition().x << ", " << redPawnSprite.getPosition().y << ")\n";
-    cout << "Green Pawn: (" << greenPawnSprite.getPosition().x << ", " << greenPawnSprite.getPosition().y << ")\n";
-    cout << "Blue Pawn: (" << bluePawnSprite.getPosition().x << ", " << bluePawnSprite.getPosition().y << ")\n";
-    cout << "Purple Pawn: (" << purplePawnSprite.getPosition().x << ", " << purplePawnSprite.getPosition().y << ")\n";
-}
-
 int main(int argc,char* argv[]){
     // ... [Unchanged code for initialization and setup] ...
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Jeu de societe",sf::Style::Fullscreen);
@@ -69,7 +44,15 @@ int main(int argc,char* argv[]){
 
             if (event.type == sf::Event::KeyPressed) {
                 switch(event.key.code) {
-                    case sf::Keyboard::Space: ; break;
+                    case sf::Keyboard::Space: display.getGameState()->add_wound(0, rand()%3);
+                    display.getGameState()->move_player(0, rand()%6);
+                    display.getGameState()->add_wound(1, rand()%3);
+                    display.getGameState()->move_player(1, rand()%6);
+                    display.getGameState()->add_wound(2, rand()%3);
+                    display.getGameState()->move_player(2, rand()%6);
+                    display.getGameState()->add_wound(3, rand()%3);
+                    display.getGameState()->move_player(3, rand()%6);
+                    break;
                     default: break;
                 }
             }

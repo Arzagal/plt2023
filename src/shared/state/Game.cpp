@@ -73,6 +73,7 @@ namespace state{
 
     void Game::add_wound (int player, int value){
         this->damage_count[player] += value;
+        if(this->damage_count[player]>14){this->damage_count[player] = 14;}
     }
 
     void Game::heal (int player, int value){

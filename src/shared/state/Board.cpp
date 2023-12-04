@@ -11,6 +11,13 @@ namespace state {
         }
     }
     void Board::random_init() {
+        for(int i = 0; i< this->player_location.size(); i++){
+            int loc = rand()%6;
+            while(this->player_location[loc]!=0){
+                loc = rand()%6;
+            }
+            this->player_location[loc] = i;
+        }
     }
 
     void Board::move_player(int player, int location) {

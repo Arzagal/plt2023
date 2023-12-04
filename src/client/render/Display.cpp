@@ -19,6 +19,8 @@ namespace render {
     void Display::refresh(){
         window->clear();
         window->draw(background);
+        this->myLocations.printContents();
+        this->draw_board();
         for(int i = 0; i< this->gameState->get_number_player(); i++){
             this->draw_wounds(i);
             this->draw_player_character(i);
@@ -49,7 +51,7 @@ namespace render {
 
         pawnTexture.loadFromFile("../ShadowHunter_Card/Board/Pawn_" + std::to_string(PlayerNum+1) + ".png");
         sf::Vector2f position = myLocations.get_woundLocations().at(gameState->get_wounds(PlayerNum)+1)[PlayerNum].get_position();
-        this->draw(pawnTexture, size, position);
+        this->draw(pawnTexture, size, position, 0);
 
     }
 
@@ -68,7 +70,7 @@ namespace render {
             sf::Vector2f size = sf::Vector2f(62,100);
             sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
 
-            this->draw(texture, size, position);
+            this->draw(texture, size, position, 0);
 
         }
     }
@@ -81,7 +83,7 @@ namespace render {
         pawnTexture.loadFromFile("../ShadowHunter_Card/Board/Pawn_" + std::to_string(PlayerNum+1) + ".png");
         sf::Vector2f position;
         position = myLocations.get_playerOnBoard().at(id+1)[PlayerNum].get_position();
-        this->draw(pawnTexture, size, position);
+        this->draw(pawnTexture, size, position, 0);
 
     }
 
@@ -96,13 +98,25 @@ namespace render {
         sf::Texture texture = this->getCardImg(id);
         sf::Vector2f size = sf::Vector2f(62,100);
         sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
-        this->draw(texture, size, position);
+        this->draw(texture, size, position, 0);
 
     }
-    void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position) { //Function to draw the given image on a certain position
+
+    void Display::draw_board() {
+        for(int i =0; i<6;i++){
+            sf::Texture texture;
+            texture.loadFromFile("../ShadowHunter_Card/Role_Card/Bob_1.png");
+            sf::Vector2f size = sf::Vector2f(200,300);
+            sf::Vector2f position = this->myLocations.get_cardsOnBoard()[i].get_position();
+            float angle = this->myLocations.get_cardsOnBoard()[i].getAngle();
+            this->draw(texture, size, position, angle);
+        }
+    }
+    void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position, float angle) { //Function to draw the given image on a certain position
         sf::Sprite sprite;
         sprite.setTexture(texture);
         sprite.setScale(size.x / texture.getSize().x, size.y/ texture.getSize().y);
+        sprite.setRotation(angle);
         sf::FloatRect bounds = sprite.getLocalBounds();
         sprite.setOrigin(bounds.width / 2, bounds.height / 2);
         sprite.setPosition(position);
