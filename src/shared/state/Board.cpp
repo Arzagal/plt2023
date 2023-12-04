@@ -11,7 +11,6 @@ namespace state {
         }
     }
     void Board::random_init() {
-        int i;
     }
 
     void Board::move_player(int player, int location) {
@@ -31,7 +30,6 @@ namespace state {
     }
 
     void Board::get_effect(int location) {
-        int i;
     }
 
     int Board::get_location(int player) {

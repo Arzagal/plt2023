@@ -11,7 +11,9 @@ namespace state{
         this->damage_count = std::vector<int>();
     }
     void Game::add_player (){
-        this->player_number++;
+        if(this->state == Starting) {
+            this->player_number++;
+        }
     }
     void Game::new_turn (){
         this->state = Playing;
@@ -19,9 +21,13 @@ namespace state{
         if(this->playing >= this->player_number){
             this->playing = 0;
         }
+        this->turn++;
     }
+
     void Game::add_dmg (int target){
+        this->damage_count[target]++;
     }
+
     Card* Game::draw (Card_type card_type){
         Card* res;
         if(card_type == DARK){
@@ -51,7 +57,7 @@ namespace state{
         for(int j =0; j<this->player_number; j++){
             Player player = Player(j);
             this->playerListe.push_back(player);
-            this->damage_count.push_back(j);
+            this->damage_count.push_back(0);
 //            player.set_character();
         }
     }
