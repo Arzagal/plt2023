@@ -3,6 +3,7 @@
 //
 #include <boost/test/unit_test.hpp>
 #include "../../src/shared/state/Player.h"
+#include "../../src/shared/state.h"
 using namespace state;
     BOOST_AUTO_TEST_CASE(firstPlayerTest){
         int num1 = 0;
@@ -10,7 +11,7 @@ using namespace state;
         Player player = Player(num1);
         Player target = Player(num2);
         Character character;
-        Darknlight card;
+        Darknlight* card = new Darknlight();
         int hp;
 
         player.active_character_effect ();
@@ -21,7 +22,7 @@ using namespace state;
 
         player.set_character (character);
         int get_number = player.get_number();
-        std::vector <Darknlight> equipped;
+        std::vector <Darknlight*> equipped;
         equipped = player.get_equipped_card ();
         player.active_board_effect ();
 

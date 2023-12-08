@@ -12,7 +12,11 @@ namespace state{
     };
     void Darknlight:: play_effect () {  }
 
-    Card_type Darknlight::get_card_type() {
+    int Darknlight::get_card_type() {
         return this->card_type;
+    }
+
+    void Darknlight::set_card_type(int type) {
+        this->card_type = type;
     }
 }

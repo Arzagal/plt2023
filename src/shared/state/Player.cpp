@@ -30,12 +30,12 @@ namespace state{
     int Player::get_number (){
         return this->number;
     }
-    std::vector<Darknlight> Player::get_equipped_card (){
+    std::vector<Darknlight*> Player::get_equipped_card (){
         return this->equipped_card;
     }
     void Player::active_board_effect (){}
 
-    void Player::equipe_card (Darknlight card){
+    void Player::equipe_card (Darknlight* card){
         this->equipped_card.push_back(card);
     }
 
