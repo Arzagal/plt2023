@@ -28,7 +28,7 @@ namespace state{
         this->damage_count[target]++;
     }
 
-    Card* Game::draw (Card_type card_type){
+    Card* Game::draw (int card_type){
         Card* res;
         if(card_type == DARK){
             res = this->deckD->draw();
@@ -55,11 +55,12 @@ namespace state{
         this->deckD = new DeckDark();
         this->board = new Board(player_number);
         for(int j =0; j<this->player_number; j++){
-            Player player = Player(j);
+            Player *player = new Player(j);
             this->playerListe.push_back(player);
             this->damage_count.push_back(0);
 //            player.set_character();
         }
+        this->state = Playing;
     }
 
     void Game::move_player (int player, int location){
@@ -84,7 +85,7 @@ namespace state{
     }
 
     void Game::attack (int attacking, int attacked){
-        int value = this->playerListe[attacking].get_attack();
+        int value = this->playerListe[attacking]->get_attack();
         this->damage_count[attacked] += value;
     }
 
@@ -100,7 +101,7 @@ namespace state{
         return this->damage_count[PlayerNum];
     }
 
-    std::vector<Player> Game::get_Player_liste() {
+    std::vector<Player*> Game::get_Player_liste() {
         return this->playerListe;
     }
 
