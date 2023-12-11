@@ -27,5 +27,10 @@ using namespace state;
         player.active_board_effect ();
 
         player.equipe_card (card);
+
+        player.set_character(Allie);
+        BOOST_CHECK_EQUAL(player.getCharacter(), "Allie");
+        player.set_character(Allie);
+        BOOST_CHECK_EQUAL(player.getCharacter(), "Allie");
         BOOST_CHECK(1);
     }

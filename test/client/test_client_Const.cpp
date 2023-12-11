@@ -14,5 +14,6 @@ BOOST_AUTO_TEST_CASE(DisplayTest) {
     BOOST_CHECK_EQUAL(woundLoc.at(1)[0].getPixelX(), 450);
     std::map<int, std::vector<PlayerPosition>> playerBoard = constTest->get_playerOnBoard();
     BOOST_CHECK_EQUAL(playerBoard.at(1)[0].getPixelX(), 770);
+    constTest->printContents();
 
 }

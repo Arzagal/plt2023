@@ -35,6 +35,10 @@ int main(int argc,char* argv[]){
     display.getGameState()->add_player();
     display.getGameState()->add_player();
     display.getGameState()->start_game();
+    display.getGameState()->get_Player_liste()[0]->set_character(state::Agnes);
+    display.getGameState()->get_Player_liste()[1]->set_character(state::Allie);
+    display.getGameState()->get_Player_liste()[2]->set_character(state::Emi);
+    display.getGameState()->get_Player_liste()[3]->set_character(state::Franklin);
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -54,6 +58,10 @@ int main(int argc,char* argv[]){
                         display.getGameState()->move_player(2, rand() % 6);
                         display.getGameState()->add_wound(3, rand() % 3);
                         display.getGameState()->move_player(3, rand() % 6);
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[0]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[1]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[2]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[3 ]->reveal();}
                         break;
                     default:
                         break;

@@ -13,7 +13,7 @@
 namespace render{
 
     Const::Const() {
-        std::ifstream file("../Consts");
+        std::ifstream file("./Consts");
 
         /*if (!file.is_open()) {
             std::cerr << "Error opening file: ../Consts" << std::endl;
@@ -156,5 +156,6 @@ namespace render{
     std::map<int,std::vector<CardPosition>> Const::get_equipmentCards() {
     return equipmentCards;
     }
+    
 
 }

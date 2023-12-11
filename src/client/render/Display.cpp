@@ -25,6 +25,7 @@ namespace render {
                 this->draw_wounds(i);
                 this->draw_player_character(i);
                 this->draw_pawns(i);
+//                this->draw_equipped_card(i);
             }
         }
             window->display();
@@ -72,7 +73,7 @@ namespace render {
             }
             sf::Texture texture = this->getCardImg(id);
             sf::Vector2f size = sf::Vector2f(62,100);
-            sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
+            sf::Vector2f position = myLocations.get_equipmentCards().at(PlayerNum+1)[i].get_position();
 
             this->draw(texture, size, position, 0);
 
@@ -125,9 +126,18 @@ namespace render {
         sf::Texture texture;
         if(this->gameState->get_Player_liste()[PlayerNum]->isrevealed()) {
             texture.loadFromFile(
-                    "./ShadowHunter_Card/Role_Card/" + std::to_string(this->gameState->get_Player_liste()[PlayerNum]->getCharacter()) +
+                    "./ShadowHunter_Card/Role_Card/" + this->gameState->get_Player_liste()[PlayerNum]->getCharacter() +
                     ".png");
         }
+        else{
+            texture.loadFromFile("./ShadowHunter_Card/Back_Card/role_back.png");
+        }
+        sf::Vector2f size = sf::Vector2f(200,300);
+        sf::Vector2f position;
+        position = myLocations.get_characterCards()[PlayerNum].get_position();
+        float angle = myLocations.get_characterCards()[PlayerNum].getAngle();
+        this->draw(texture, size, position, angle);
+
     }
     void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position, float angle) { //Function to draw the given image on a certain position
         sf::Sprite sprite;
