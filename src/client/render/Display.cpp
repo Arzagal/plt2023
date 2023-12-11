@@ -3,6 +3,7 @@
 //
 #include <render/Display.h>
 #include <iostream>
+#include <limits>
 
 namespace render {
 
@@ -19,7 +20,6 @@ namespace render {
     void Display::refresh(){
         window->clear();
         window->draw(background);
-        this->myLocations.printContents();
         this->draw_board();
         for(int i = 0; i< this->gameState->get_number_player(); i++){
             this->draw_wounds(i);
@@ -56,7 +56,8 @@ namespace render {
     }
 
     void Display::draw_equipped_card(int PlayerNum) {
-        for(int i = 0; i< gameState->get_Player_liste()[PlayerNum].get_equipped_card().size(); i++){
+        int equip_size=static_cast<int> (gameState->get_Player_liste()[PlayerNum].get_equipped_card().size());
+        for(int i = 0; (i< equip_size); i++){
             int id;
             if(gameState->get_Player_liste()[PlayerNum].get_equipped_card()[i].get_card_type() == 0){
                 int output = 1;

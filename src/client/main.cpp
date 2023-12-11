@@ -20,6 +20,9 @@ Sprite greenPawnSprite;
 Sprite bluePawnSprite;
 Sprite purplePawnSprite;
 
+sf::Texture cardText;
+sf::Sprite cardSprite;
+
 void setPawns(float x, float y, float offset){
     redPawnSprite.setPosition(x,y);
     greenPawnSprite.setPosition(x+offset,y);
@@ -39,12 +42,15 @@ void movePawns(float dx, float dy){
     cout << "Blue Pawn: (" << bluePawnSprite.getPosition().x << ", " << bluePawnSprite.getPosition().y << ")\n";
     cout << "Purple Pawn: (" << purplePawnSprite.getPosition().x << ", " << purplePawnSprite.getPosition().y << ")\n";
 }
+void moveCard(float dx,float dy){
+    cardSprite.move(dx,dy);
+    cout << "Test Card: (" << cardSprite.getPosition().x << ", " << cardSprite.getPosition().y << ")\n"<<std::endl;
+}
 
 int main(int argc,char* argv[]){
     // ... [Unchanged code for initialization and setup] ...
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Jeu de societe",sf::Style::Fullscreen);
-    sf::Texture cardText;
-    sf::Sprite cardSprite;
+
 
     sf::Texture redPawnText;
     sf::Texture greenPawnText;
@@ -70,7 +76,7 @@ int main(int argc,char* argv[]){
     myTexture.loadFromFile("../ShadowHunter_Card/Board/Board-1.png");
     cardSprite.setTexture(cardText);
     bg.setTexture(myTexture);
-    sf::Vector2f cardVect=sf::Vector2f (200,230);
+    sf::Vector2f cardVect=sf::Vector2f (200,300);
     sf::Vector2f pawnVect=sf::Vector2f (40,40);
 
     cardSprite.setScale(cardVect.x/cardText.getSize().x,cardVect.y/cardText.getSize().y);
@@ -103,6 +109,7 @@ int main(int argc,char* argv[]){
     setPawns(300,300,30);
 
     render::Display display(window,  bg);
+    display.getGameState()->start_game();
     float movementStep = 10.0f;  // Define the movement step size
 
     while (window.isOpen()) {
@@ -114,10 +121,14 @@ int main(int argc,char* argv[]){
 
             if (event.type == sf::Event::KeyPressed) {
                 switch(event.key.code) {
-                    case sf::Keyboard::Z: movePawns(0, -movementStep); break;
+                    /*case sf::Keyboard::Z: movePawns(0, -movementStep); break;
                     case sf::Keyboard::Q: movePawns(-movementStep, 0); break;
                     case sf::Keyboard::S: movePawns(0, movementStep); break;
-                    case sf::Keyboard::D: movePawns(movementStep, 0); break;
+                    case sf::Keyboard::D: movePawns(movementStep, 0); break;*/
+                    case sf::Keyboard::Z: moveCard(0, -movementStep); break;
+                    case sf::Keyboard::Q: moveCard(-movementStep, 0); break;
+                    case sf::Keyboard::S: moveCard(0, movementStep); break;
+                    case sf::Keyboard::D: moveCard(movementStep, 0); break;
                     default: break;
                 }
             }
@@ -127,7 +138,6 @@ int main(int argc,char* argv[]){
             window.draw(bluePawnSprite);
             window.draw(greenPawnSprite);
             window.draw(purplePawnSprite);
-            //window.display();
             window.display();
         }
 
