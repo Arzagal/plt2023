@@ -24,7 +24,7 @@ namespace render {
             for (int i = 0; i < this->gameState->get_number_player(); i++) {
                 this->draw_wounds(i);
                 this->draw_player_character(i);
-                this->draw_equipped_card(i);
+                this->draw_pawns(i);
             }
         }
             window->display();
@@ -79,7 +79,7 @@ namespace render {
         }
     }
 
-    void Display::draw_player_character(int PlayerNum){
+    void Display::draw_pawns(int PlayerNum) {
         int id  = gameState->get_player_location(PlayerNum);
         sf::Texture pawnTexture;
         sf::Vector2f size = sf::Vector2f(10,10);
@@ -93,6 +93,10 @@ namespace render {
 
     void Display::draw_playing_card(int CardId, int Cardtype) {
         int id = CardId;
+        if(CardId<1 || CardId  >17){
+            std::cerr << "Wrong ID : this card does not exist" << std::endl;
+            return;
+        }
         if(Cardtype==2){
             id += 33;
         }
@@ -114,6 +118,15 @@ namespace render {
             sf::Vector2f position = this->myLocations.get_cardsOnBoard()[i].get_position();
             float angle = this->myLocations.get_cardsOnBoard()[i].getAngle();
             this->draw(texture, size, position, angle);
+        }
+    }
+
+    void Display::draw_player_character(int PlayerNum) {
+        sf::Texture texture;
+        if(this->gameState->get_Player_liste()[PlayerNum]->isrevealed()) {
+            texture.loadFromFile(
+                    "./ShadowHunter_Card/Role_Card/" + std::to_string(this->gameState->get_Player_liste()[PlayerNum]->getCharacter()) +
+                    ".png");
         }
     }
     void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position, float angle) { //Function to draw the given image on a certain position
