@@ -150,6 +150,11 @@ namespace render{
     std::vector<CardPosition> Const::get_cardsOnBoard() {
         return cardsOnBoard;
     }
-
+    std::vector<CardPosition> Const::get_characterCards() {
+        return characterCards;
+    }
+    std::map<int,std::vector<CardPosition>> Const::get_equipmentCards() {
+    return equipmentCards;
+    }
 
 }
