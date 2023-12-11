@@ -13,8 +13,9 @@
 namespace render{
 
     Const::Const() {
-        std::ifstream file("./Consts");
-        if (!file.is_open()) {
+        std::ifstream file("../Consts");
+
+        /*if (!file.is_open()) {
             std::cerr << "Error opening file: ../Consts" << std::endl;
              // or handle error appropriately
         }
@@ -33,7 +34,7 @@ namespace render{
         if (file.fail()) {
             std::cerr << "Non-IO error occurred" << std::endl;
             // Handle error
-        }
+        }*/
         std::string line;
         int groupNum = 1;
         int playerNum = 1;
@@ -89,7 +90,21 @@ namespace render{
                     playerNum++;
                 }
             }
+            else if (line == "Personnages") {
+                std::cout<<"into Personnages"<<std::endl;
+                while (getline(file, line) && !line.empty()) {
+                    std::cout<<"into the while"<<std::endl;
+                    std::istringstream iss(line);
+                    float pixelX, pixelY, angle;
+                    iss >> pixelX >> pixelY >> angle;
+                    std::cout<<"checking vars"<<std::endl;
+                    std::cout<<pixelX<<pixelY<<angle<<std::endl;
+                    std::cout<<"checking vars"<<std::endl;
+                    characterCards.emplace_back(pixelX, pixelY, angle);
+                }
+            }
         }
+        file.close();
     }
     void Const::printContents() {
         std::cout << "Contents of woundLocations:\n";
@@ -116,8 +131,15 @@ namespace render{
         for (CardPosition cardPos : cardsOnBoard) {
             std::cout << "Card at [" << cardPos.getPixelX() << ", "
                       << cardPos.getPixelY() << "] with angle " << cardPos.getAngle() << " ";
+            std::cout << "\n";
         }
-        std::cout << "\n";
+        std::cout << "\nContents of characterCards:\n";
+        for (CardPosition characterCard : characterCards) {
+            std::cout << "Card at [" << characterCard.getPixelX() << ", "
+                      << characterCard.getPixelY() << "] with angle " << characterCard.getAngle() << " ";
+            std::cout << "\n";
+        }
+
     }
     std::map<int, std::vector<PlayerPosition>> Const::get_woundLocations() {
         return woundLocations;
