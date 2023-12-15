@@ -25,7 +25,7 @@ namespace render {
                 this->draw_wounds(i);
                 this->draw_player_character(i);
                 this->draw_pawns(i);
-//                this->draw_equipped_card(i);
+                //this->draw_equipped_card(i);
             }
         }
             window->display();

@@ -103,6 +103,24 @@ namespace render{
                     characterCards.emplace_back(pixelX, pixelY, angle);
                 }
             }
+            /*else if (line == "Equipements") {
+                std::cout<<"into Equipements"<<std::endl;
+                std::vector<CardPosition> positions;
+                while (getline(file, line) && !line.empty()) {
+                    std::istringstream iss(line);
+                    float pixelX, pixelY,angle;
+                    iss >> pixelX >> pixelY >> angle;
+                    positions.emplace_back(pixelX, pixelY, angle);
+
+                    if (playerNum == 4) {
+                        equipmentCards[groupNum] = positions;
+                        positions.clear();
+                        groupNum++;
+                        playerNum = 0;
+                    }
+                    playerNum++;
+                }
+            }*/
         }
         file.close();
     }
@@ -137,6 +155,15 @@ namespace render{
         for (CardPosition characterCard : characterCards) {
             std::cout << "Card at [" << characterCard.getPixelX() << ", "
                       << characterCard.getPixelY() << "] with angle " << characterCard.getAngle() << " ";
+            std::cout << "\n";
+        }
+        std::cout << "Contents of equipmentCards:\n";
+        for (const auto& pair : equipmentCards) {
+            std::cout << "Key: " << pair.first << " - Values: ";
+            for (CardPosition cardPos : pair.second) {
+                std::cout << "Equipment Card at ["
+                          << cardPos.getPixelX() << ", " << cardPos.getPixelY() << "] ";
+            }
             std::cout << "\n";
         }
 

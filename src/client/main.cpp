@@ -39,6 +39,7 @@ int main(int argc,char* argv[]){
     display.getGameState()->get_Player_liste()[1]->set_character(state::Allie);
     display.getGameState()->get_Player_liste()[2]->set_character(state::Emi);
     display.getGameState()->get_Player_liste()[3]->set_character(state::Franklin);
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
