@@ -38,6 +38,8 @@ namespace render{
         std::string line;
         int groupNum = 1;
         int playerNum = 1;
+        int groupNum1 = 1;
+        int playerNum1 = 1;
 
         while (getline(file, line)) {
             std::cout<<line<<std::endl;
@@ -104,6 +106,7 @@ namespace render{
                 }
             }
             else if (line == "Equipements") {
+
                 std::cout<<"into Equipements"<<std::endl;
                 std::vector<CardPosition> positions;
                 while (getline(file, line) && !line.empty()) {
@@ -112,13 +115,13 @@ namespace render{
                     iss >> pixelX >> pixelY >> angle;
                     positions.emplace_back(pixelX, pixelY, angle);
 
-                    if (playerNum == 4) {
-                        equipmentCards[groupNum] = positions;
+                    if (playerNum1 == 4) {
+                        equipmentCards[groupNum1] = positions;
                         positions.clear();
-                        groupNum++;
-                        playerNum = 0;
+                        groupNum1++;
+                        playerNum1 = 0;
                     }
-                    playerNum++;
+                    playerNum1++;
                 }
             }
         }
