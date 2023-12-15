@@ -17,10 +17,13 @@ BOOST_AUTO_TEST_CASE(DisplayTest){
     Darknlight* cardL = new Darknlight();
     cardL->set_card_type(0);
     Darknlight* cardD = new Darknlight();
-    cardL->set_card_type(1);
-    BOOST_CHECK_EQUAL(Card_type::LIGHT, cardL->get_card_type());
+    cardD->set_card_type(1);
+    BOOST_CHECK_EQUAL(0, cardL->get_card_type());
+    display.getGameState()->get_Player_liste()[0]->set_character(state::Agnes);
     display.getGameState()->get_Player_liste()[0]->equipe_card(cardL);
     display.getGameState()->get_Player_liste()[0]->equipe_card(cardD);
+    display.refresh();
+    display.getGameState()->get_Player_liste()[0]->reveal();
     display.refresh();
     display.draw_playing_card(1,0);
     display.draw_playing_card(1,1);

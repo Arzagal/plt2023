@@ -19,4 +19,8 @@ namespace state{
     void Darknlight::set_card_type(int type) {
         this->card_type = type;
     }
+
+    void Darknlight::set_id(int id) {
+        this->card_id = id;
+    }
 }

@@ -185,7 +185,7 @@ namespace render{
         return characterCards;
     }
     std::map<int,std::vector<CardPosition>> Const::get_equipmentCards() {
-    return equipmentCards;
+        return equipmentCards;
     }
     
 

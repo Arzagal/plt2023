@@ -40,6 +40,23 @@ int main(int argc,char* argv[]){
     display.getGameState()->get_Player_liste()[2]->set_character(state::Emi);
     display.getGameState()->get_Player_liste()[3]->set_character(state::Franklin);
 
+    state::Darknlight * equipCardL = new state::Darknlight;
+    equipCardL->set_card_type(0);
+    equipCardL->set_id(17);
+
+    state::Darknlight * equipCardD = new state::Darknlight;
+    equipCardD->set_card_type(1);
+    equipCardD->set_id(4);
+
+    display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardL);
+
+    display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardD);
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
