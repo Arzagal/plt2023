@@ -103,7 +103,7 @@ namespace render{
                     characterCards.emplace_back(pixelX, pixelY, angle);
                 }
             }
-            /*else if (line == "Equipements") {
+            else if (line == "Equipements") {
                 std::cout<<"into Equipements"<<std::endl;
                 std::vector<CardPosition> positions;
                 while (getline(file, line) && !line.empty()) {
@@ -120,9 +120,10 @@ namespace render{
                     }
                     playerNum++;
                 }
-            }*/
+            }
         }
         file.close();
+        this->printContents();
     }
     void Const::printContents() {
         std::cout << "Contents of woundLocations:\n";
