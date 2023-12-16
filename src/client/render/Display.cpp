@@ -63,7 +63,6 @@ namespace render {
     void Display::draw_equipped_card(int PlayerNum) {
         for(int i = 0; i< int(gameState->get_Player_liste()[PlayerNum]->get_equipped_card().size()); i++){
             int id;
-            std::cout << "test type card"<< gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_card_type() << std::endl;
             if(gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_card_type() == 0){
                 int output = 0;
                 id = gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_id() + output;
@@ -73,9 +72,9 @@ namespace render {
                 id = gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_id() + output;
             }
             sf::Texture texture = this->getCardImg(id);
-            sf::Vector2f size = sf::Vector2f(62,100);
-            sf::Vector2f position = myLocations.get_equipmentCards().at(PlayerNum+1)[id].get_position();
+            sf::Vector2f size = sf::Vector2f(200,300);
 
+            sf::Vector2f position = myLocations.get_equipmentCards().at(PlayerNum+1)[i].get_position();
             this->draw(texture, size, position, 0);
 
         }

@@ -106,7 +106,6 @@ namespace render{
                 }
             }
             else if (line == "Equipements") {
-
                 std::cout<<"into Equipements"<<std::endl;
                 std::vector<CardPosition> positions;
                 while (getline(file, line) && !line.empty()) {
@@ -126,7 +125,7 @@ namespace render{
             }
         }
         file.close();
-        this->printContents();
+//        this->printContents();
     }
     void Const::printContents() {
         std::cout << "Contents of woundLocations:\n";
