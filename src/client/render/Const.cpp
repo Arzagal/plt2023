@@ -13,7 +13,7 @@
 namespace render{
 
     Const::Const() {
-        std::ifstream file("./Consts");
+        std::ifstream file("./ShadowHunter_Card/Consts");
 
         /*if (!file.is_open()) {
             std::cerr << "Error opening file: ../Consts" << std::endl;

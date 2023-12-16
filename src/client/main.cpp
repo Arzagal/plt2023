@@ -79,7 +79,7 @@ int main(int argc,char* argv[]){
                         if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[0]->reveal();}
                         if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[1]->reveal();}
                         if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[2]->reveal();}
-                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[3 ]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[3]->reveal();}
                         break;
                     default:
                         break;
