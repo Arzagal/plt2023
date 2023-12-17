@@ -6,5 +6,5 @@
 namespace state{
     DeckDark::DeckDark() {}
     void DeckDark:: remove (int card_id){}
-    Darknlight DeckDark:: draw (){}
+    Darknlight* DeckDark:: draw (){}
 }
