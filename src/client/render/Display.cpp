@@ -152,7 +152,7 @@ namespace render {
     }
 
 
-    void Display::stateChanged(state::State){
+    void Display::stateChanged(state::State, int playerNum){
         this->refresh();
     }
 }
