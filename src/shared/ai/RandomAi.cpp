@@ -11,7 +11,12 @@ namespace ai {
                 case (state::Playing) :
                     break;
                 case (state::Move) :
-                    this->game->move_player()
+                    this->game->move_player(this->playerNumber, 0);
+                    break;
+                case (state::Location_effect) :
+                    break;
+                case (state::Attack) :
+                    int target = this->game.
             }
         }
     }

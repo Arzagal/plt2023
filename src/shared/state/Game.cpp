@@ -118,4 +118,6 @@ namespace state{
     int Game::get_player_location(int PlayerNum) {
         return this->board->get_location(PlayerNum);
     }
+
+
 }
