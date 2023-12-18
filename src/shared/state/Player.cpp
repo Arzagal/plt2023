@@ -1,53 +1,19 @@
-// Include necessary headers
-#include <iostream>
-#include <string>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
-#include <chrono>
+#include "Player.h"
 #include "Character.h"
 #include "Darknlight.h"
+#include "Teams.h"
+#include <cstdlib>
 
 namespace state {
 
-    Player::Player()
-        : hp(0), revealed(false), number(0) {}
-
-    void Player::move() {
-        auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-        std::srand(static_cast<unsigned int>(seed));
-
-        int previousSecteur = number;
-        int newSecteur;
-
-        do {
-            newSecteur = std::rand() % 9 + 2;
-
-            std::cout << character << " a lancé un dé et est maintenant dans le secteur : " << newSecteur << std::endl;
-
-        } while (newSecteur == previousSecteur);
-
-        number = newSecteur;
-    }
-
-    void Player::attack(Player target) {
-        auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-        std::srand(static_cast<unsigned int>(seed));
-
-        int damage = std::rand() % 10;
-
-        target.set_hp(target.get_hp() - damage);
-
-        std::cout << character << " a infligé " << damage << " points de dégâts!" << std::endl;
+    Player::Player(int number) : number(number), hp(std::rand() % 5 + 11), revealed(false), attackNumber(0) {
     }
 
     void Player::active_character_effect() {
     }
 
-    void Player::show_character_effect() {
-    }
-
     void Player::reveal() {
+        revealed = true;
     }
 
     int Player::get_hp() {
@@ -66,15 +32,35 @@ namespace state {
         return number;
     }
 
-    std::vector<Darknlight> Player::get_equipped_card() {
+    std::vector<Darknlight*> Player::get_equipped_card() {
         return equipped_card;
     }
 
     void Player::active_board_effect() {
     }
 
-    void Player::equipe_card(Darknlight card) {
+    void Player::equipe_card(Darknlight* card) {
         equipped_card.push_back(card);
+    }
+
+    int Player::get_attack() {
+        return attackNumber;
+    }
+
+    bool Player::isrevealed() {
+        return revealed;
+    }
+
+    Character Player::getCharacter() {
+        return character;
+    }
+
+    void Player::set_team(Teams new_team) {
+        team = new_team;
+    }
+
+    Teams Player::get_team() const {
+        return team;
     }
 
 }
