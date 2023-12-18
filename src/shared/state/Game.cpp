@@ -4,17 +4,19 @@
 #include "Game.h"
 
 namespace state{
-    Game::Game (){
+    Game::Game () : Observable(){
         this->state = Starting;
         this->turn = 0;
         this->player_number = 1;
         this->damage_count = std::vector<int>();
     }
+
     void Game::add_player (){
         if(this->state == Starting) {
             this->player_number++;
         }
     }
+
     void Game::new_turn (){
         this->state = Playing;
         this->playing++;
@@ -22,10 +24,12 @@ namespace state{
             this->playing = 0;
         }
         this->turn++;
+        this->notifyObserver(this->state);
     }
 
     void Game::add_dmg (int target){
         this->damage_count[target]++;
+        this->notifyObserver(this->state);
     }
 
     Card* Game::draw (int card_type){
@@ -42,6 +46,7 @@ namespace state{
         else{
             res = nullptr;
         }
+        this->notifyObserver(this->state);
         return res;
     }
 
@@ -61,20 +66,23 @@ namespace state{
 //            player.set_character();
         }
         this->state = Playing;
+        this->notifyObserver(this->state);
     }
 
     void Game::move_player (int player, int location){
         this->board->move_player(player, location);
-
+        this->notifyObserver(this->state);
     }
 
     void Game::active_board_effect (int active_player){
         this->board->get_effect(this->board->get_location(active_player));
+        this->notifyObserver(this->state);
     }
 
     void Game::add_wound (int player, int value){
         this->damage_count[player] += value;
         if(this->damage_count[player]>14){this->damage_count[player] = 14;}
+        this->notifyObserver(this->state);
     }
 
     void Game::heal (int player, int value){
@@ -82,11 +90,13 @@ namespace state{
         if(this->damage_count[player]<0){
             this->damage_count[player]=0;
         }
+        this->notifyObserver(this->state);
     }
 
     void Game::attack (int attacking, int attacked){
         int value = this->playerListe[attacking]->get_attack();
         this->damage_count[attacked] += value;
+        this->notifyObserver(this->state);
     }
 
     int Game::get_active_player() {

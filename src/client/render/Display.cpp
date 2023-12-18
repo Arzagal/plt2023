@@ -10,6 +10,7 @@ namespace render {
             : window(&win), background(bg), gameState(game){
         this->gameState=game;
         this->background=bg;
+        this->refresh();
     }
 
     state::Game *Display::getGameState() {
@@ -148,6 +149,11 @@ namespace render {
         sprite.setOrigin(bounds.width / 2, bounds.height / 2);
         sprite.setPosition(position);
         window->draw(sprite);
+    }
+
+
+    void Display::stateChanged(state::State){
+        this->refresh();
     }
 }
 
