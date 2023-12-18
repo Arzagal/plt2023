@@ -10,5 +10,5 @@ BOOST_AUTO_TEST_CASE(firstObservableTest) {
     Observer *observer = new Observer();
     obs->registerObserver(observer);
     State test = State::Playing;
-    obs->notifyObserver(test);
+    obs->notifyObserver(test, 0);
 }

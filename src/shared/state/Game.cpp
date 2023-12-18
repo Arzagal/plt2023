@@ -24,12 +24,12 @@ namespace state{
             this->playing = 0;
         }
         this->turn++;
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
     }
 
     void Game::add_dmg (int target){
         this->damage_count[target]++;
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
     }
 
     Card* Game::draw (int card_type){
@@ -46,7 +46,7 @@ namespace state{
         else{
             res = nullptr;
         }
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
         return res;
     }
 
@@ -66,23 +66,23 @@ namespace state{
 //            player.set_character();
         }
         this->state = Playing;
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
     }
 
     void Game::move_player (int player, int location){
         this->board->move_player(player, location);
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
     }
 
     void Game::active_board_effect (int active_player){
         this->board->get_effect(this->board->get_location(active_player));
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
     }
 
     void Game::add_wound (int player, int value){
         this->damage_count[player] += value;
         if(this->damage_count[player]>14){this->damage_count[player] = 14;}
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
     }
 
     void Game::heal (int player, int value){
@@ -90,13 +90,13 @@ namespace state{
         if(this->damage_count[player]<0){
             this->damage_count[player]=0;
         }
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
     }
 
     void Game::attack (int attacking, int attacked){
         int value = this->playerListe[attacking]->get_attack();
         this->damage_count[attacked] += value;
-        this->notifyObserver(this->state);
+        this->notifyObserver(this->state, this->get_active_player());
     }
 
     int Game::get_active_player() {

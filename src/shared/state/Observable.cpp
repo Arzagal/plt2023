@@ -12,9 +12,9 @@ namespace state{
         observers.push_back(observer);
     }
 
-    void Observable::notifyObserver(state::State state) {
+    void Observable::notifyObserver(state::State state, int playerNum) {
         for(auto observer : observers){
-            observer->stateChanged(state);
+            observer->stateChanged(state, playerNum);
         }
     }
 }
