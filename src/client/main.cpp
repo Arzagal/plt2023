@@ -30,7 +30,7 @@ int main(int argc,char* argv[]){
 
     state::Game *game = new state::Game();
     render::Display display(window,  bg, game);
-    float movementStep = 10.0f;  // Define the movement step size
+    game->registerObserver(&display);
     display.getGameState()->add_player();
     display.getGameState()->add_player();
     display.getGameState()->add_player();
@@ -57,14 +57,15 @@ int main(int argc,char* argv[]){
     display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardD);
     display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardD);
     display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardD);
+
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
+
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-
-
             if (event.type == sf::Event::KeyPressed) {
                 switch (event.key.code) {
                     case sf::Keyboard::Space:
@@ -85,7 +86,6 @@ int main(int argc,char* argv[]){
                         break;
                 }
             }
-            display.refresh();
         }
     }
 
