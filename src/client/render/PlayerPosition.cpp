@@ -26,4 +26,16 @@ namespace render{
         sf::Vector2f res = sf::Vector2f(this->pixelX, this->pixelY);
         return res;
     }
+
+    void PlayerPosition::setPlayerNum(int playerNum) {
+        this->playerNum = playerNum;
+    }
+
+    void PlayerPosition::setPixelX(float X) {
+        this->pixelX = X;
+    }
+
+    void PlayerPosition::setPixelY(float Y) {
+        this->pixelY = Y;
+    }
 }

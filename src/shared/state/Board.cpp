@@ -4,11 +4,21 @@
 #include <algorithm>
 #include "Board.h"
 namespace state {
-    Board::Board() {
-        int i =0;
+    Board::Board(int len) {
+        this->player_location = std::vector<int>();
+        for(int i = 0; i <len; i++){
+            this->player_location.push_back(0);
+        }
     }
     void Board::random_init() {
-        int i;
+
+        for(int i = 0; i< static_cast<int>(this->player_location.size()); i++){
+            int loc = rand()%6;
+            while(this->player_location[loc]!=0){
+                loc = rand()%6;
+            }
+            this->player_location[loc] = i;
+        }
     }
 
     void Board::move_player(int player, int location) {
@@ -28,7 +38,6 @@ namespace state {
     }
 
     void Board::get_effect(int location) {
-        int i;
     }
 
     int Board::get_location(int player) {

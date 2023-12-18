@@ -7,40 +7,86 @@
 // Fin test SFML
 
 #include <state.h>
-#include "render/Display.h"
+#include <render/Display.h>
+
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 using namespace std;
-using namespace state;
+using namespace sf;
 
-int main(int argc,char* argv[])
-{
-    /*Ceci est une version de démonstration non représentative du résultat final
-     * Dans la version finale , le jeu lira les positions prédéfiniesdes cartes à partir d'un .txt
-     * */
-    sf::RenderWindow window(sf::VideoMode(600, 450), "Jeu de societe");
-
-
+int main(int argc,char* argv[]){
+    // ... [Unchanged code for initialization and setup] ...
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Jeu de societe",sf::Style::Fullscreen);
     sf::Sprite bg;
     sf::Texture myTexture;
-    myTexture.loadFromFile("../ShadowHunter_Card/Board/Board-1.png");
+    myTexture.loadFromFile("./ShadowHunter_Card/Board/Board-1.png");
     bg.setTexture(myTexture);
-    sf::Vector2f size = sf::Vector2f(600, 450);
-    bg.setScale(size.x/myTexture.getSize().x,size.y/myTexture.getSize().y);
+    sf::Vector2f myVect=sf::Vector2f (1366,768);
+    bg.setScale(myVect.x/myTexture.getSize().x,myVect.y/myTexture.getSize().y);
     sf::FloatRect bounds = bg.getLocalBounds();
     bg.setOrigin(bounds.width / 2, bounds.height / 2);
-    bg.setPosition(300, 225);
+    bg.setPosition(950, 500);
 
-    render::Display display(window,  bg);
-    //render::Const constants();
+    state::Game *game = new state::Game();
+    render::Display display(window,  bg, game);
+    float movementStep = 10.0f;  // Define the movement step size
+    display.getGameState()->add_player();
+    display.getGameState()->add_player();
+    display.getGameState()->add_player();
+    display.getGameState()->start_game();
+    display.getGameState()->get_Player_liste()[0]->set_character(state::Agnes);
+    display.getGameState()->get_Player_liste()[1]->set_character(state::Allie);
+    display.getGameState()->get_Player_liste()[2]->set_character(state::Emi);
+    display.getGameState()->get_Player_liste()[3]->set_character(state::Franklin);
 
+    state::Darknlight * equipCardL = new state::Darknlight;
+    equipCardL->set_card_type(0);
+    equipCardL->set_id(17);
+
+    state::Darknlight * equipCardD = new state::Darknlight;
+    equipCardD->set_card_type(1);
+    equipCardD->set_id(4);
+
+    display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardL);
+
+    display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardD);
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
+
+
+            if (event.type == sf::Event::KeyPressed) {
+                switch (event.key.code) {
+                    case sf::Keyboard::Space:
+                        display.getGameState()->add_wound(0, rand() % 3);
+                        display.getGameState()->move_player(0, rand() % 6);
+                        display.getGameState()->add_wound(1, rand() % 3);
+                        display.getGameState()->move_player(1, rand() % 6);
+                        display.getGameState()->add_wound(2, rand() % 3);
+                        display.getGameState()->move_player(2, rand() % 6);
+                        display.getGameState()->add_wound(3, rand() % 3);
+                        display.getGameState()->move_player(3, rand() % 6);
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[0]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[1]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[2]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[3]->reveal();}
+                        break;
+                    default:
+                        break;
+                }
+            }
+            display.refresh();
         }
-        display.refresh();
     }
 
     return 0;
