@@ -2,6 +2,7 @@
 // Created by louis on 10/24/23.
 //
 #include "Game.h"
+#include <iostream>
 
 namespace state{
     Game::Game () : Observable(){
@@ -65,8 +66,7 @@ namespace state{
             this->damage_count.push_back(0);
 //            player.set_character();
         }
-        this->state = Playing;
-        this->notifyObserver(this->state, this->get_active_player());
+        this->next_state();
     }
 
     void Game::move_player (int player, int location){
@@ -119,5 +119,32 @@ namespace state{
         return this->board->get_location(PlayerNum);
     }
 
+    std::vector<int> Game::get_neighbours(int playerNum) {
+        return this->board->get_neighbours(playerNum);
+    }
 
+    void Game::next_state() {
+        switch(this->state){
+            case(Starting) :
+                this->state = Playing;
+                this->new_turn();
+                break;
+            case(Playing) :
+                this->state = Move;
+                break;
+            case(Move) :
+                break;
+            case(Location_effect) :
+                this->state = Attack;
+                this->active_board_effect(this->get_active_player());
+            case(Card_effect) :
+                break;
+            case(Attack) :
+                this->new_turn();
+                break;
+            case(Finished) :
+                std::cerr << "Error : the game is already finished";
+                break;
+        }
+    }
 }

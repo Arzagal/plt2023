@@ -76,7 +76,7 @@ namespace render {
             sf::Vector2f size = sf::Vector2f(200,300);
 
             sf::Vector2f position = myLocations.get_equipmentCards().at(PlayerNum+1)[i].get_position();
-            this->draw(texture, size, position, 0);
+            this->draw(texture, size, position, myLocations.get_equipmentCards().at(PlayerNum+1)[i].getAngle());
 
         }
     }

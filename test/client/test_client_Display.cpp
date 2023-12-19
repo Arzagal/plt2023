@@ -14,9 +14,9 @@ BOOST_AUTO_TEST_CASE(DisplayTest){
     Display display = Display(window, bg, game);
     game->start_game();
     display.getGameState()->start_game();
-    Darknlight* cardL = new Darknlight();
+    Darknlight* cardL = new Darknlight(1);
     cardL->set_card_type(0);
-    Darknlight* cardD = new Darknlight();
+    Darknlight* cardD = new Darknlight(1);
     cardD->set_card_type(1);
     BOOST_CHECK_EQUAL(display.getGameState(), game);
     display.getGameState()->get_Player_liste()[0]->set_character(state::Agnes);
