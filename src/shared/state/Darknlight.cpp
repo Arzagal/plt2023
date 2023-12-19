@@ -4,8 +4,7 @@
 #include "Darknlight.h"
 
 namespace state{
-    Darknlight::Darknlight() {
-        this->card_id = 1;
+    Darknlight::Darknlight(int id) : card_id(id){
     }
     int Darknlight:: get_id (){
         return this->card_id;
@@ -23,4 +22,6 @@ namespace state{
     void Darknlight::set_id(int id) {
         this->card_id = id;
     }
+
+
 }
