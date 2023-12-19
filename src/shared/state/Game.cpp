@@ -70,6 +70,19 @@ namespace state{
     }
 
     void Game::move_player (int player, int location){
+        int trueloc;
+        switch(location){ // Go to the right location (depending of the dice value)
+            case(2) : trueloc = 0; break;
+            case(3) : trueloc = 0; break;
+            case(4) : trueloc = 1; break;
+            case(5) : trueloc = 1; break;
+            case(6) : trueloc = 2; break;
+            case(8) : trueloc = 3; break;
+            case(9) : trueloc = 4; break;
+            case(10) : trueloc = 5; break;
+            case(7) : this->choose_location();
+
+        }
         this->board->move_player(player, location);
         this->notifyObserver(this->state, this->get_active_player());
     }
@@ -138,6 +151,7 @@ namespace state{
                 this->state = Attack;
                 this->active_board_effect(this->get_active_player());
             case(Card_effect) :
+                this->state = Attack;
                 break;
             case(Attack) :
                 this->new_turn();
@@ -146,5 +160,6 @@ namespace state{
                 std::cerr << "Error : the game is already finished";
                 break;
         }
+        this->notifyObserver(this->state, this->playing);
     }
 }

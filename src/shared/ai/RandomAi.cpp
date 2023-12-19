@@ -16,7 +16,7 @@ namespace ai {
                     this->game->next_state();
                     break;
                 case state::Move :
-                    this->game->move_player(this->playerNumber, 0);
+                    this->game->move_player(this->playerNumber, rand()%6 + rand()%4 + 2);
                     this->game->next_state();
                     break;
                 case state::Location_effect :
