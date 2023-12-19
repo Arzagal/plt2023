@@ -123,9 +123,28 @@ namespace render{
                     playerNum1++;
                 }
             }
+            else if (line=="Boutons"){
+                std::cout<<"into boutons"<<std::endl;
+                while (getline(file, line) && !line.empty()) {
+                    std::cout<<"into the while"<<std::endl;
+                    std::istringstream iss(line);
+                    float pixelX, pixelY,width,height;
+                    iss >> pixelX >> pixelY ;
+                    std::cout<<"checking vars"<<std::endl;
+                    std::cout<<pixelX<<pixelY<<std::endl;
+                    std::cout<<"checking vars"<<std::endl;
+                    buttons.emplace_back(pixelX, pixelY);
+                }
+
+                for (int i=1;i<4;i++) {
+                    std::cout<<"JE SUIS LA "<<std::endl;
+                    buttons[i-1].setButton(i);
+
+                }
+            }
         }
         file.close();
-//        this->printContents();
+        this->printContents();
     }
     void Const::printContents() {
         std::cout << "Contents of woundLocations:\n";
@@ -169,6 +188,12 @@ namespace render{
             }
             std::cout << "\n";
         }
+        std::cout << "\nContents of buttons:\n";
+        for (ButtonPosition myButton : buttons) {
+            std::cout << "Card at [" << myButton.getX() << ", "
+                      << myButton.getY() << "] Of type"<<myButton.getType();
+            std::cout << "\n";
+        }
 
     }
     std::map<int, std::vector<PlayerPosition>> Const::get_woundLocations() {
@@ -185,6 +210,9 @@ namespace render{
     }
     std::map<int,std::vector<CardPosition>> Const::get_equipmentCards() {
         return equipmentCards;
+    }
+    std::vector<ButtonPosition> Const::get_buttons() {
+        return buttons;
     }
     
 
