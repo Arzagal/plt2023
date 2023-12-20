@@ -8,12 +8,11 @@
 namespace state{
     DeckDark::DeckDark() {
         for(int i =0; i<16; i++){
-            Darknlight* Card = new Darknlight(i-1);
+            Darknlight* Card = new Darknlight(i+1);
             this->deck.push_back(Card);
         }
 
     }
-    void DeckDark:: remove (int card_id){}
     Darknlight* DeckDark:: draw (){
         std::random_device rd;
         std::mt19937 g(rd());
