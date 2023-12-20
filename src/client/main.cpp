@@ -40,11 +40,9 @@ int main(int argc,char* argv[]){
     display.getGameState()->get_Player_liste()[2]->set_character(state::Emi);
     display.getGameState()->get_Player_liste()[3]->set_character(state::Franklin);
 
-    state::Darknlight * equipCardL = new state::Darknlight(17);
-    equipCardL->set_card_type(0);
+    state::Darknlight * equipCardL = new state::Darknlight(17, 0);
 
-    state::Darknlight * equipCardD = new state::Darknlight(4);
-    equipCardD->set_card_type(1);
+    state::Darknlight * equipCardD = new state::Darknlight(4, 1);
 
     display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardL);
     display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardL);

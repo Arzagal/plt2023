@@ -4,9 +4,9 @@
 #include "Vision.h"
 
 namespace state{
-    Vision::Vision() {}
+    Vision::Vision(int id) : card_id(id) {}
     void Vision::choose_target (Player target) {}
     int Vision::get_id (){
-        return 0;
+        return this->card_id;
     }
 }

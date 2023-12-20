@@ -17,6 +17,9 @@ namespace state{
         std::random_device rd;
         std::mt19937 g(rd());
 
+        if(deck.empty()){
+
+        }
         std::shuffle(deck.begin(), deck.end(), g);
         Vision* res =  deck.at(deck.size()-1);
         deck.pop_back();

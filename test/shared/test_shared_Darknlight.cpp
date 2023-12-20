@@ -6,7 +6,7 @@
 #include "../../src/shared/state/Darknlight.h"
 using namespace state;
 BOOST_AUTO_TEST_CASE(firstDarknlightTest){
-    Darknlight darkn = Darknlight(1);
+    Darknlight darkn = Darknlight(1,1);
     darkn.set_id(12);
     darkn.set_card_type(0);
     int id = darkn.get_id ();

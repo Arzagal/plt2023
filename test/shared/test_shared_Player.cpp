@@ -11,7 +11,7 @@ using namespace state;
         Player player = Player(num1);
         Player target = Player(num2);
         Character character;
-        Darknlight* card = new Darknlight(1);
+        Darknlight* card = new Darknlight(1,0);
         int hp;
 
         player.active_character_effect ();

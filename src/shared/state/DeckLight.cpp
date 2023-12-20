@@ -8,7 +8,7 @@
 namespace state{
     DeckLight::DeckLight() {
         for(int i =0; i<17; i++){
-            Darknlight* Card = new Darknlight(i+1);
+            Darknlight* Card = new Darknlight(i+1, 0);
             this->deck.push_back(Card);
         }
 
@@ -23,4 +23,3 @@ namespace state{
         return res;
     }
     }
-}

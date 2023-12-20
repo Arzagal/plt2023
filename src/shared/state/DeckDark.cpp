@@ -8,7 +8,7 @@
 namespace state{
     DeckDark::DeckDark() {
         for(int i =0; i<16; i++){
-            Darknlight* Card = new Darknlight(i+1);
+            Darknlight* Card = new Darknlight(i+1, 1);
             this->deck.push_back(Card);
         }
 
