@@ -7,22 +7,25 @@
 
 namespace state{
     DeckVision::DeckVision() {
-        for(int i =0; i<16; i++){
-            Vision* Card = new Vision(i-1);
-            this->deck.push_back(Card);
-        }
-
+        this->deck_initialize();
     }
     Vision* DeckVision:: draw (){
         std::random_device rd;
         std::mt19937 g(rd());
 
         if(deck.empty()){
-
+            this->deck_initialize();
         }
         std::shuffle(deck.begin(), deck.end(), g);
         Vision* res =  deck.at(deck.size()-1);
         deck.pop_back();
         return res;
+    }
+
+    void DeckVision::deck_initialize() {
+        for(int i =0; i<16; i++){
+            Vision* Card = new Vision(i-1);
+            this->deck.push_back(Card);
+        }
     }
 }

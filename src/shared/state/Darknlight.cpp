@@ -9,7 +9,9 @@ namespace state{
     int Darknlight:: get_id (){
         return this->card_id;
     };
-    void Darknlight:: play_effect () {  }
+    void Darknlight:: play_effect () {
+
+    }
 
     int Darknlight::get_card_type() {
         return this->card_type;
