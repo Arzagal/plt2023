@@ -3435,7 +3435,7 @@
             <dia:string>#effect#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#VisonEffect*#</dia:string>
+            <dia:string>#VisionEffect*#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
