@@ -12,16 +12,16 @@ namespace state{
         return this->card_id;
     }
 
-    void Vision::activate_effect(Player* target) {
+    void Vision::activate_effect(Player* target, Game* game) {
         switch(this->card_id){
             case(1) :
-                if(std::find(this->effect[this->card_id]->teamtargets.begin(),this->effect[this->card_id]->teamtargets.end(), this->game->get_Player_liste()[target]->getTeams())
+                if(std::find(this->effect[this->card_id]->teamtargets.begin(),this->effect[this->card_id]->teamtargets.end(), game->get_Player_liste()[target]->getTeams())
                 != this->effect[this->card_id]->teamtargets.end()){
-                    if(this->game->get_wounds(target) != 0){
-                        this->game->heal(target, this->effect[this->card_id]->damage);
+                    if(game->get_wounds(target) != 0){
+                        game->heal(target, this->effect[this->card_id]->damage);
                     }
                     else{
-                        this->game->add_wound(target, this->effect[this->card_id]->damage);
+                        game->add_wound(target, this->effect[this->card_id]->damage);
                     }
                 }
         }
