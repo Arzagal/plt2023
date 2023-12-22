@@ -3529,7 +3529,7 @@
             <dia:string>#effect#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::vector(VisionEffect*)#</dia:string>
+            <dia:string>#std::vector&lt;VisionEffect*&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
