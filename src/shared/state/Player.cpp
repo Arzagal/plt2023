@@ -25,6 +25,17 @@ namespace state{
 
     void Player::set_character (Character character){
         this->character = character;
+        switch(character){
+        case Ellen : case Emi : case Franklin : case Fu_ka : case Georges : case Gregor :
+            this->team = Hunter;
+            break;
+        case Liche : case Loup_Garou : case Metamorphe : case Momie : case Valkyrie : case Vampire :
+            this->team = Shadow;
+            break;
+        default:
+            this->team = Neutral;
+            break;
+        }
     }
 
     int Player::get_number (){
@@ -110,5 +121,9 @@ namespace state{
 
     bool Player::isrevealed() {
         return this->revealed;
+    }
+
+    Teams Player::getTeams() {
+        return this->team;
     }
 }
