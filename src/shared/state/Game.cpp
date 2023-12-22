@@ -20,21 +20,19 @@ namespace state{
     }
 
     void Game::new_turn (){
-        this->state = Playing;
         this->playing++;
         if(this->playing >= this->player_number){
             this->playing = 0;
         }
         this->turn++;
-        this->notifyObserver(this->state, this->get_active_player());
     }
 
     void Game::add_dmg (int target){
         this->damage_count[target]++;
-        this->notifyObserver(this->state, this->get_active_player());
     }
 
     Card* Game::draw (int card_type){
+        this->state = Card_effect;
         Card* res;
         if(card_type == DARK){
             res = this->deckD->draw();
@@ -48,7 +46,6 @@ namespace state{
         else{
             res = nullptr;
         }
-        this->notifyObserver(this->state, this->playing);
         return res;
     }
 
@@ -76,7 +73,7 @@ namespace state{
         this->next_state();
     }
 
-    void Game::move_player (int player, int location){
+    void Game::move_player (int player, int location){ //FIXME
         int trueloc = 0;
         switch(location){ // Go to the right location (depending on the dice value)
             case(2) : case(3) : trueloc = 0; break;
@@ -88,18 +85,15 @@ namespace state{
             default : std::cerr << "The movement should be the result of a d6 and d4 launch";
         }
         this->board->move_player(player, trueloc);
-        this->notifyObserver(this->state, this->playing);
     }
 
     void Game::active_board_effect (int active_player){
-        this->board->get_effect(this->board->get_location(active_player));
-        this->notifyObserver(this->state, this->playing);
+        this->board->get_effect(this->board->get_location(active_player), this);
     }
 
     void Game::add_wound (int player, int value){
         this->damage_count[player] += value;
         if(this->damage_count[player]>14){this->damage_count[player] = 14;}
-        this->notifyObserver(this->state, this->playing);
     }
 
     void Game::heal (int player, int value){
@@ -107,13 +101,11 @@ namespace state{
         if(this->damage_count[player]<0){
             this->damage_count[player]=0;
         }
-        this->notifyObserver(this->state, this->playing);
     }
 
     void Game::attack (int attacking, int attacked){
         int value = this->playerListe[attacking]->get_attack();
         this->damage_count[attacked] += value;
-        this->notifyObserver(this->state, this->playing);
     }
 
     int Game::get_active_player() {
@@ -150,6 +142,7 @@ namespace state{
                 this->state = Move;
                 break;
             case(Move) :
+                this->state = Location_effect;
                 break;
             case(Location_effect) :
                 this->state = Attack;
