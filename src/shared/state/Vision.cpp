@@ -12,7 +12,7 @@ namespace state{
         return this->card_id;
     }
 
-    void Vision::activate_effect(Player* target, Game* game) {
+    void Vision::activate_effect(int target, Game* game) {
         switch(this->card_id){
             case(1) :
                 if(std::find(this->effect[this->card_id]->teamtargets.begin(),this->effect[this->card_id]->teamtargets.end(), game->get_Player_liste()[target]->getTeams())
