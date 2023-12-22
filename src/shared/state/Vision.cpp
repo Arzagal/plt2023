@@ -13,17 +13,6 @@ namespace state{
     }
 
     void Vision::activate_effect(int target, Game* game) {
-        switch(this->card_id){
-            case(1) :
-                if(std::find(this->effect[this->card_id]->teamtargets.begin(),this->effect[this->card_id]->teamtargets.end(), game->get_Player_liste()[target]->getTeams())
-                != this->effect[this->card_id]->teamtargets.end()){
-                    if(game->get_wounds(target) != 0){
-                        game->heal(target, this->effect[this->card_id]->damage);
-                    }
-                    else{
-                        game->add_wound(target, this->effect[this->card_id]->damage);
-                    }
-                }
-        }
+
     }
 }
