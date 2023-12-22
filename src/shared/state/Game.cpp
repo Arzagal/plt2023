@@ -79,7 +79,7 @@ namespace state{
     void Game::move_player (int player, int location){
         int trueloc = 0;
         switch(location){ // Go to the right location (depending on the dice value)
-            case(2) : case(3) : break;
+            case(2) : case(3) : trueloc = 0; break;
             case(4) : case(5): trueloc = 1; break;
             case(6) : trueloc = 2; break;
             case(8) : trueloc = 3; break;
