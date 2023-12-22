@@ -173,5 +173,8 @@ namespace render {
         sprite.setPosition(position);
         window->draw(sprite);
     }
+    sf::RenderWindow* Display::getWindow() {
+        return window;
+    }
 }
 

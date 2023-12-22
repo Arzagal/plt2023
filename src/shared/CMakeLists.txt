@@ -13,10 +13,13 @@ file(GLOB_RECURSE shared_sources *.cpp)
 # Build the "shared" library and add required includes
 add_library(${lib_shared_target} STATIC ${shared_sources}
         engine/Engine.cpp)
+include_directories(${CMAKE_SOURCE_DIR}../render)
 add_dependencies(${lib_shared_target} generate-headers)
 target_include_directories(${lib_shared_target} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}
+        "${CMAKE_CURRENT_SOURCE_DIR}/../client/"
   )
+
 
 # vim: set sw=2 sts=2 et:
 
