@@ -6,11 +6,13 @@
 namespace state{
     Darknlight::Darknlight(int id, int card_type) : card_id(id), card_type(card_type){
     }
+
     int Darknlight:: get_id (){
         return this->card_id;
-    };
-    void Darknlight:: play_effect (int target, Game* game) {
+    }
 
+    void Darknlight:: play_effect (int target, Game* game) {
+        game->add_wound(target, 1);
     }
 
     int Darknlight::get_card_type() {
@@ -23,6 +25,10 @@ namespace state{
 
     void Darknlight::set_id(int id) {
         this->card_id = id;
+    }
+
+    bool Darknlight::is_equipment() {
+        return this->is_equipped;
     }
 
 

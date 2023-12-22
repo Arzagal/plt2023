@@ -32,24 +32,6 @@ namespace render {
             window->display();
     }
 
-    sf::Texture Display::getCardImg(int cardId) {
-        sf::Texture texture;
-        if(cardId<1 or cardId >49){
-            std::cerr << "Error : invalid Card ID"<< std::endl;
-        }
-        if(cardId<18){
-            texture.loadFromFile("./ShadowHunter_Card/Light_Card/Light_Card_" + std::to_string(cardId) + ".png");
-        }
-        else if(cardId<34){
-            texture.loadFromFile("./ShadowHunter_Card/Shadow_Card/Shadow_Card_" + std::to_string(cardId-17) + ".png");
-
-        }
-        else if(cardId<50){
-            texture.loadFromFile("./ShadowHunter_Card/Vision_Card/Vision_Card_" + std::to_string(cardId-33) + ".png");
-
-        }
-        return texture;
-    }
 
     void Display::draw_wounds(int PlayerNum) {
         sf::Texture pawnTexture;
@@ -62,17 +44,18 @@ namespace render {
     }
 
     void Display::draw_equipped_card(int PlayerNum) {
+
+        sf::Texture texture;
         for(int i = 0; i< int(gameState->get_Player_liste()[PlayerNum]->get_equipped_card().size()); i++){
             int id;
             if(gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_card_type() == 0){
-                int output = 0;
-                id = gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_id() + output;
+                id = gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_id();
+                texture.loadFromFile(gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_path());
             }
             else{
-                int output = 17;
-                id = gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_id() + output;
+                id = gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_id();
+                texture.loadFromFile(gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_path());
             }
-            sf::Texture texture = this->getCardImg(id);
             sf::Vector2f size = sf::Vector2f(200,300);
 
             sf::Vector2f position = myLocations.get_equipmentCards().at(PlayerNum+1)[i].get_position();
@@ -105,8 +88,8 @@ namespace render {
         else if(Cardtype==1){
             id += 17;
         }
-        sf::Texture texture = this->getCardImg(id);
-        sf::Vector2f size = sf::Vector2f(62,100);
+//        sf::Texture texture = this->getCardImg(id);
+//        sf::Vector2f size = sf::Vector2f(62,100);
 //        sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
 //        this->draw(texture, size, position, 0);
 

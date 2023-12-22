@@ -13,6 +13,6 @@ namespace state{
     }
 
     void Vision::activate_effect(int target, Game* game) {
-
+        game->add_wound(target, 1);
     }
 }

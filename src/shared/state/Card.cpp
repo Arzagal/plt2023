@@ -3,6 +3,9 @@
 //
 #include "Card.h"
 namespace state {
-    void Card::activate_effect() {}
     Card::Card() {}
+
+    std::string Card::get_path() {
+        return this->path_to_texture;
+    }
 }

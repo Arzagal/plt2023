@@ -10,6 +10,7 @@ namespace state {
             this->player_location.push_back(0);
         }
     }
+
     void Board::random_init() {
 
         for(int i = 0; i< static_cast<int>(this->player_location.size()); i++){
@@ -38,6 +39,9 @@ namespace state {
     }
 
     void Board::get_effect(int location) {
+        if(location == 0 || location==1){
+
+        }
     }
 
     int Board::get_location(int player) {
