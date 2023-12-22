@@ -7,13 +7,12 @@
 namespace state{
     Vision::Vision(int id) : card_id(id) {}
 
-    void Vision::choose_target (Player target) {}
 
     int Vision::get_id (){
         return this->card_id;
     }
 
-    void Vision::activate_effect(int target) {
+    void Vision::activate_effect(Player* target) {
         switch(this->card_id){
             case(1) :
                 if(std::find(this->effect[this->card_id]->teamtargets.begin(),this->effect[this->card_id]->teamtargets.end(), this->game->get_Player_liste()[target]->getTeams())
