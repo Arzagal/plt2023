@@ -12,7 +12,10 @@ namespace state{
         return this->card_id;
     }
 
-    void Vision::activate_effect() {
-
+    void Vision::activate_effect(int target) {
+        switch(this->card_id){
+            case(1) :
+                if(this->game)
+        }
     }
 }

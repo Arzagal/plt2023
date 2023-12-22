@@ -5,8 +5,8 @@
 #include "../../src/shared/state/DeckDark.h"
 using namespace state;
 BOOST_AUTO_TEST_CASE(firstDeckDarkTest){
-        int card_id = 0;
-        DeckDark dk = DeckDark();
-        dk.draw ();
-        BOOST_CHECK(1);
+    int card_id = 0;
+    DeckDark dk = DeckDark();
+    dk.draw ();
+    BOOST_CHECK(1);
 }
