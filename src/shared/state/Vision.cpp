@@ -15,7 +15,7 @@ namespace state{
     void Vision::activate_effect(int target) {
         switch(this->card_id){
             case(1) :
-                if(this->game)
+                if(this->game->get_Player_liste()[target].)
         }
     }
 }
