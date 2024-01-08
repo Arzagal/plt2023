@@ -14,27 +14,6 @@ namespace render{
 
     Const::Const() {
         std::ifstream file("./ShadowHunter_Card/Consts");
-
-        /*if (!file.is_open()) {
-            std::cerr << "Error opening file: ../Consts" << std::endl;
-             // or handle error appropriately
-        }
-
-        // Perform file reading operations here...
-
-        // Check for other I/O errors
-        if (file.bad()) {
-            std::cerr << "I/O error while reading" << std::endl;
-            // Handle error
-        }
-        if (file.eof()) {
-            std::cerr << "End of file reached unexpectedly" << std::endl;
-            // Handle error
-        }
-        if (file.fail()) {
-            std::cerr << "Non-IO error occurred" << std::endl;
-            // Handle error
-        }*/
         std::string line;
         int groupNum = 1;
         int playerNum = 1;
@@ -42,21 +21,21 @@ namespace render{
         int playerNum1 = 1;
 
         while (getline(file, line)) {
-            std::cout<<line<<std::endl;
+            //std::cout<<line<<std::endl;
             if (line == "Cartes") {
-                std::cout<<"into Cartes"<<std::endl;
+                //std::cout<<"into Cartes"<<std::endl;
                 while (getline(file, line) && !line.empty()) {
-                    std::cout<<"into the while"<<std::endl;
+                    //std::cout<<"into the while"<<std::endl;
                     std::istringstream iss(line);
                     float pixelX, pixelY, angle;
                     iss >> pixelX >> pixelY >> angle;
-                    std::cout<<"checking vars"<<std::endl;
-                    std::cout<<pixelX<<pixelY<<angle<<std::endl;
-                    std::cout<<"checking vars"<<std::endl;
+                    //std::cout<<"checking vars"<<std::endl;
+                    //std::cout<<pixelX<<pixelY<<angle<<std::endl;
+                    //std::cout<<"checking vars"<<std::endl;
                     cardsOnBoard.emplace_back(pixelX, pixelY, angle);
                 }
             } else if (line == "Blessures") {
-                std::cout<<"into Blessures"<<std::endl;
+                //std::cout<<"into Blessures"<<std::endl;
                 std::vector<PlayerPosition> positions;
                 while (getline(file, line) && !line.empty()) {
                     std::istringstream iss(line);
@@ -73,7 +52,7 @@ namespace render{
                     playerNum++;
                 }
             } else if (line == "Joueurs") {
-                std::cout<<"into Joueurs"<<std::endl;
+                //std::cout<<"into Joueurs"<<std::endl;
                 std::vector<PlayerPosition> positions;
                 groupNum = 1;
                 playerNum = 1;
@@ -93,20 +72,20 @@ namespace render{
                 }
             }
             else if (line == "Personnages") {
-                std::cout<<"into Personnages"<<std::endl;
+                //std::cout<<"into Personnages"<<std::endl;
                 while (getline(file, line) && !line.empty()) {
-                    std::cout<<"into the while"<<std::endl;
+                    //std::cout<<"into the while"<<std::endl;
                     std::istringstream iss(line);
                     float pixelX, pixelY, angle;
                     iss >> pixelX >> pixelY >> angle;
-                    std::cout<<"checking vars"<<std::endl;
-                    std::cout<<pixelX<<pixelY<<angle<<std::endl;
-                    std::cout<<"checking vars"<<std::endl;
+                    //std::cout<<"checking vars"<<std::endl;
+                    //std::cout<<pixelX<<pixelY<<angle<<std::endl;
+                    //std::cout<<"checking vars"<<std::endl;
                     characterCards.emplace_back(pixelX, pixelY, angle);
                 }
             }
             else if (line == "Equipements") {
-                std::cout<<"into Equipements"<<std::endl;
+                //std::cout<<"into Equipements"<<std::endl;
                 std::vector<CardPosition> positions;
                 while (getline(file, line) && !line.empty()) {
                     std::istringstream iss(line);
@@ -124,27 +103,27 @@ namespace render{
                 }
             }
             else if (line=="Boutons"){
-                std::cout<<"into boutons"<<std::endl;
+                //std::cout<<"into boutons"<<std::endl;
                 while (getline(file, line) && !line.empty()) {
-                    std::cout<<"into the while"<<std::endl;
+                    //std::cout<<"into the while"<<std::endl;
                     std::istringstream iss(line);
                     float pixelX, pixelY,width,height;
                     iss >> pixelX >> pixelY ;
-                    std::cout<<"checking vars"<<std::endl;
+                    //std::cout<<"checking vars"<<std::endl;
                     std::cout<<pixelX<<pixelY<<std::endl;
-                    std::cout<<"checking vars"<<std::endl;
+                    //std::cout<<"checking vars"<<std::endl;
                     buttons.emplace_back(pixelX, pixelY);
                 }
 
                 for (int i=1;i<4;i++) {
-                    std::cout<<"JE SUIS LA "<<std::endl;
+                    //std::cout<<"JE SUIS LA "<<std::endl;
                     buttons[i-1].setButton(i);
 
                 }
             }
         }
         file.close();
-        this->printContents();
+        //this->printContents();
     }
     void Const::printContents() {
         std::cout << "Contents of woundLocations:\n";

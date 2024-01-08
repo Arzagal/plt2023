@@ -53,8 +53,9 @@ namespace engine{
         while (true){
             if (myDisplay->getWindow()->isOpen()){
                 sf::Event event;
+                //std::cout<<"awaiting usr input\n";
                 while (myDisplay->getWindow()->pollEvent(event)){
-
+                    std::cout<<"awaiting usr input\n";
                     if (event.type==sf::Event::MouseButtonReleased){
                         int mouseX = event.mouseButton.x;
                         int mouseY = event.mouseButton.y;

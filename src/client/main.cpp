@@ -8,7 +8,7 @@
 
 #include <state.h>
 #include <render/Display.h>
-
+#include "engine/Engine.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -54,7 +54,7 @@ int main(int argc,char* argv[]){
     display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardD);
     display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardD);
 
-    std::cout << "Into the while \n";
+    engine::Engine engine(&display);
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -63,7 +63,6 @@ int main(int argc,char* argv[]){
                 window.close();
             }
             if (event.type == sf::Event::KeyPressed) {
-                std::cout << game->get_player_location(0);
                 switch (event.key.code) {
 
                     case sf::Keyboard::Space:

@@ -159,8 +159,14 @@ namespace render {
 
     void Display::stateChanged(state::State, int playerNum){
         this->refresh();
-        std::thread displayThread (&Display::refresh, this);
-        displayThread.detach();
+//        std::thread displayThread (&Display::refresh, this);
+//        displayThread.detach();
+    }
+    sf::RenderWindow* Display::getWindow() {
+        return window;
+    }
+    Const Display::get_locations() {
+        return myLocations;
     }
 }
 
