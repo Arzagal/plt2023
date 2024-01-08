@@ -10,6 +10,7 @@ namespace state {
             this->player_location.push_back(0);
         }
     }
+
     void Board::random_init() {
 
         for(int i = 0; i< static_cast<int>(this->player_location.size()); i++){
@@ -29,6 +30,7 @@ namespace state {
         int i = this->get_location(player);
         std::vector<int>::iterator it;
         it = std::find(this->player_location.begin(), this->player_location.end(), i);
+
         std::vector <int> res;
         while (it !=this->player_location.end()){
             res.push_back(it - this->player_location.begin());
@@ -37,7 +39,16 @@ namespace state {
         return res;
     }
 
-    void Board::get_effect(int location) {
+    void Board::get_effect(int location, Game* game) {
+        if(location == 0 || location==1){
+            game->draw(0);
+        }
+        else if(location == 2 || location==3){
+            game->draw(1);
+        }
+        else{
+            game->draw(2);
+        }
     }
 
     int Board::get_location(int player) {

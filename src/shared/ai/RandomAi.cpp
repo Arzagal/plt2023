@@ -30,12 +30,10 @@ namespace ai {
                     this->game->next_state();
                     break;
                 }
-                case state::Card_effect :
+                case state::Card_effect : case state::Finished:
                     this->game->next_state();
                     break;
-                case state::Finished:
-                    this->game->next_state();
-                    break;
+
                 case state::Starting:
                     break;
             }
