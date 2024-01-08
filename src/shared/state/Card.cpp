@@ -5,7 +5,5 @@
 namespace state {
     Card::Card() {}
 
-    std::string Card::get_path() {
-        return this->path_to_texture;
-    }
+    void Card::activate_effect() {}
 }

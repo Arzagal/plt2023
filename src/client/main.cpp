@@ -54,7 +54,7 @@ int main(int argc,char* argv[]){
     display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardD);
     display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardD);
 
-
+    std::cout << "Into the while \n";
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -63,24 +63,30 @@ int main(int argc,char* argv[]){
                 window.close();
             }
             if (event.type == sf::Event::KeyPressed) {
+                std::cout << game->get_player_location(0);
                 switch (event.key.code) {
+
                     case sf::Keyboard::Space:
+
                         display.getGameState()->add_wound(0, rand() % 3);
-                        display.getGameState()->move_player(0, rand() % 6);
+                        display.getGameState()->move_player(0, rand() % 9 +2);
                         display.getGameState()->add_wound(1, rand() % 3);
-                        display.getGameState()->move_player(1, rand() % 6);
+                        display.getGameState()->move_player(1, rand() % 9 +2);
                         display.getGameState()->add_wound(2, rand() % 3);
-                        display.getGameState()->move_player(2, rand() % 6);
+                        display.getGameState()->move_player(2, rand() % 9 +2);
                         display.getGameState()->add_wound(3, rand() % 3);
-                        display.getGameState()->move_player(3, rand() % 6);
+                        display.getGameState()->move_player(3, rand() % 9 +2);
                         if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[0]->reveal();}
                         if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[1]->reveal();}
                         if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[2]->reveal();}
                         if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[3]->reveal();}
+
+
                         break;
                     default:
                         break;
                 }
+                game->notifyObserver(game->get_state(), game->get_active_player());
             }
         }
     }
