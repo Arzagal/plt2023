@@ -30,8 +30,10 @@ int main(int argc,char* argv[]){
 
     state::Game *game = new state::Game();
     render::Display display(window,  bg, game);
-    //engine::Engine myEngine(&window);
-
+    engine::Engine myEngine(&display);
+    while (true){
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    }
 
     return 0;
 }

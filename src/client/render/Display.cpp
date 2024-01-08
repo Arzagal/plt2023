@@ -176,5 +176,8 @@ namespace render {
     sf::RenderWindow* Display::getWindow() {
         return window;
     }
+    Const Display::get_locations() {
+        return myLocations;
+    }
 }
 

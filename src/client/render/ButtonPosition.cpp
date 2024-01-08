@@ -29,4 +29,10 @@ namespace render{
     int ButtonPosition::getType() {
         return this->buttonType;
     }
+    float ButtonPosition::get_height() {
+        return this->height;
+    }
+    float ButtonPosition::get_width() {
+        return this->width;
+    }
 }
