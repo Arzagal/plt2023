@@ -15,9 +15,10 @@ BOOST_AUTO_TEST_CASE(firstBoard){
         int num = 0;
         int location = 0;
         board -> random_init();
+        Game* game = new Game();
         board-> move_player(num,location);
         std::vector <int> neighbours = board-> get_neighbours(num);
-        board-> get_effect(location);
+        board-> get_effect(location, game);
         int loc = board-> get_location(num);
         BOOST_TEST(1);
 }

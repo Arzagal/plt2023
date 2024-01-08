@@ -7,7 +7,6 @@
 // Fin test SFML
 
 #include <state.h>
-#include "engine/Engine.h"
 #include <render/Display.h>
 
 #include <SFML/Graphics.hpp>
@@ -17,6 +16,7 @@ using namespace std;
 using namespace sf;
 
 int main(int argc,char* argv[]){
+    // ... [Unchanged code for initialization and setup] ...
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Jeu de societe",sf::Style::Fullscreen);
     sf::Sprite bg;
     sf::Texture myTexture;
@@ -30,9 +30,65 @@ int main(int argc,char* argv[]){
 
     state::Game *game = new state::Game();
     render::Display display(window,  bg, game);
-    engine::Engine myEngine(&display);
-    while (true){
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    game->registerObserver(&display);
+    display.getGameState()->add_player();
+    display.getGameState()->add_player();
+    display.getGameState()->add_player();
+    display.getGameState()->start_game();
+    display.getGameState()->get_Player_liste()[0]->set_character(state::Agnes);
+    display.getGameState()->get_Player_liste()[1]->set_character(state::Allie);
+    display.getGameState()->get_Player_liste()[2]->set_character(state::Emi);
+    display.getGameState()->get_Player_liste()[3]->set_character(state::Franklin);
+
+    state::Darknlight * equipCardL = new state::Darknlight(17, 0);
+
+    state::Darknlight * equipCardD = new state::Darknlight(4, 1);
+
+    display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardL);
+    display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardL);
+
+    display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardD);
+    display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardD);
+
+    std::cout << "Into the while \n";
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                std::cout << game->get_player_location(0);
+                switch (event.key.code) {
+
+                    case sf::Keyboard::Space:
+
+                        display.getGameState()->add_wound(0, rand() % 3);
+                        display.getGameState()->move_player(0, rand() % 9 +2);
+                        display.getGameState()->add_wound(1, rand() % 3);
+                        display.getGameState()->move_player(1, rand() % 9 +2);
+                        display.getGameState()->add_wound(2, rand() % 3);
+                        display.getGameState()->move_player(2, rand() % 9 +2);
+                        display.getGameState()->add_wound(3, rand() % 3);
+                        display.getGameState()->move_player(3, rand() % 9 +2);
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[0]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[1]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[2]->reveal();}
+                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[3]->reveal();}
+
+
+                        break;
+                    default:
+                        break;
+                }
+                game->notifyObserver(game->get_state(), game->get_active_player());
+            }
+        }
     }
 
     return 0;

@@ -2,21 +2,24 @@
 // Created by louis on 10/24/23.
 //
 #include "Game.h"
+#include <iostream>
+#include "algorithm"
 
 namespace state{
-    Game::Game (){
+    Game::Game () : Observable(){
         this->state = Starting;
         this->turn = 0;
         this->player_number = 1;
         this->damage_count = std::vector<int>();
     }
+
     void Game::add_player (){
         if(this->state == Starting) {
             this->player_number++;
         }
     }
+
     void Game::new_turn (){
-        this->state = Playing;
         this->playing++;
         if(this->playing >= this->player_number){
             this->playing = 0;
@@ -29,6 +32,7 @@ namespace state{
     }
 
     Card* Game::draw (int card_type){
+        this->state = Card_effect;
         Card* res;
         if(card_type == DARK){
             res = this->deckD->draw();
@@ -54,22 +58,37 @@ namespace state{
         this->deckV = new DeckVision();
         this->deckD = new DeckDark();
         this->board = new Board(player_number);
+        std::vector<state::Character> usedChara; //Keeping the already assigned characters,
         for(int j =0; j<this->player_number; j++){
             Player *player = new Player(j);
             this->playerListe.push_back(player);
             this->damage_count.push_back(0);
-//            player.set_character();
+            state::Character testChara = static_cast<state::Character>(rand() % Vampire);
+            while((std::find(usedChara.begin(), usedChara.end(), testChara))!=usedChara.end()){
+                testChara = static_cast<state::Character>(rand() % Vampire);
+            }
+            player->set_character(testChara);
+            usedChara.push_back(testChara);
         }
-        this->state = Playing;
+        this->next_state();
     }
 
-    void Game::move_player (int player, int location){
-        this->board->move_player(player, location);
-
+    void Game::move_player (int player, int location){ //FIXME
+        int trueloc = 0;
+        switch(location){ // Go to the right location (depending on the dice value)
+            case(2) : case(3) : trueloc = 0; break;
+            case(4) : case(5): trueloc = 1; break;
+            case(6) : case(7) : trueloc = 2; break;
+            case(8) : trueloc = 3; break;
+            case(9) : trueloc = 4; break;
+            case(10) : trueloc = 5; break;
+            default : std::cerr << "The movement should be the result of a d6 and d4 launch";
+        }
+        this->board->move_player(player, trueloc);
     }
 
     void Game::active_board_effect (int active_player){
-        this->board->get_effect(this->board->get_location(active_player));
+        this->board->get_effect(this->board->get_location(active_player), this);
     }
 
     void Game::add_wound (int player, int value){
@@ -107,5 +126,37 @@ namespace state{
 
     int Game::get_player_location(int PlayerNum) {
         return this->board->get_location(PlayerNum);
+    }
+
+    std::vector<int> Game::get_neighbours(int playerNum) {
+        return this->board->get_neighbours(playerNum);
+    }
+
+    void Game::next_state() {
+        switch(this->state){
+            case(Starting) :
+                this->state = Playing;
+                this->new_turn();
+                break;
+            case(Playing) :
+                this->state = Move;
+                break;
+            case(Move) :
+                this->state = Location_effect;
+                break;
+            case(Location_effect) :
+                this->state = Attack;
+                this->active_board_effect(this->playing);
+            case(Card_effect) :
+                this->state = Attack;
+                break;
+            case(Attack) :
+                this->new_turn();
+                break;
+            case(Finished) :
+                std::cerr << "Error : the game is already finished";
+                break;
+        }
+        this->notifyObserver(this->state, this->playing);
     }
 }
