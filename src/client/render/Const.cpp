@@ -5,7 +5,6 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
-#include <iostream>
 #include <map>
 #include <vector>
 #include <string>
@@ -19,6 +18,9 @@ namespace render{
         int playerNum = 1;
         int groupNum1 = 1;
         int playerNum1 = 1;
+
+        this->cardWidth=200;
+        this->cardHeight=300;
 
         while (getline(file, line)) {
             //std::cout<<line<<std::endl;
@@ -177,6 +179,12 @@ namespace render{
             std::cout << "\n";
         }
 
+    }
+    float Const::get_card_height() {
+        return this->cardHeight;
+    }
+    float Const::get_card_width() {
+        return this->cardWidth;
     }
     std::map<int, std::vector<PlayerPosition>> Const::get_woundLocations() {
         return woundLocations;

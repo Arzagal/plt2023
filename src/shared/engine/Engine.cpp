@@ -2,19 +2,21 @@
 // Created by franzozich on 18/12/23.
 //
 #include "Engine.h"
-
+#include "MoveCommand.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <cstdlib>
 #include "render/ButtonPosition.h"
 
 namespace engine{
     Engine::Engine(render::Display *myDisplay) {
         this->myDisplay=myDisplay;
+        this->buttonClicked= false;
         /*clickThread = std::thread(&Engine::awaitUsrInput, this);
         clickThread.detach();*/
     }
-    bool Engine::thisButton(float x, float y, float width, float height, float pointX, float pointY) {
+    bool Engine::detectArea(float x, float y, float width, float height, float pointX, float pointY) {
         float halfWidth = width / 2.0f;
         float halfHeight = height / 2.0f;
 
@@ -31,27 +33,69 @@ namespace engine{
 
         return false;
     }
+    render::Display* Engine::get_display(){
+        return this->myDisplay;
+    }
 
     void Engine::handleClick(float x,float y) {
-        std::vector<render::ButtonPosition> temp=myDisplay->get_locations().get_buttons();
-        int i;
-        float rectWidth,rectHeight,rectX,rectY;
-        rectWidth=temp[0].get_width();
-        rectHeight=temp[0].get_height();
 
-        for (i= 0; i < temp.size(); i++) {
-            rectX=temp[i].getX();
-            rectY=temp[i].getY();
-            /*std::cout<<"rectX"<<rectX<<"\n";
-            std::cout<<"rectY"<<rectY<<"\n";
-            std::cout<<"rectWidth"<<rectWidth<<"\n";
-            std::cout<<"rectHeight"<<rectHeight<<"\n";*/
+        std::vector<render::ButtonPosition> buttons = myDisplay->get_locations().get_buttons();
+        std::vector<render::CardPosition> players = myDisplay->get_locations().get_characterCards();
 
-            if (thisButton(rectX,rectY,rectWidth,rectHeight,x,y)){
+        if (!buttonClicked) {
+            int i;
+            float rectWidth, rectHeight, rectX, rectY;
+            rectWidth = buttons[0].get_width();
+            rectHeight = buttons[0].get_height();
 
-                std::cout<<"Clicked on Button"<<i<<"\n";
-                break;
+            for (i = 0; i < buttons.size(); i++) {
+                rectX = buttons[i].getX();
+                rectY = buttons[i].getY();
+
+
+                if (detectArea(rectX, rectY, rectWidth, rectHeight, x, y)) {
+
+                    std::cout << "Clicked on Button" << i << "\n";
+                    break;
+                }
+
             }
+            engine::MoveCommand move;
+            switch (i) {
+
+
+                case 0://ATK
+                    this->buttonClicked = true;
+                    std::cout << "Atk mode" << "\n";
+                    break;
+                case 1://MOV
+                    move.execute(this);
+                    break;
+                case 2://NEXT
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            std::cout<<"Selecting target"<<"\n";
+            int i;
+            float rectWidth, rectHeight, rectX, rectY;
+            rectWidth = myDisplay->get_locations().get_card_width();
+            rectHeight = myDisplay->get_locations().get_card_height();
+
+            for (i = 0; i < buttons.size(); i++) {
+                 rectX=players[i].getPixelX();
+                 rectY=players[i].getPixelY();
+
+
+                if (detectArea(rectX, rectY, rectWidth, rectHeight, x, y)) {
+
+                    std::cout << "Clicked on Player" << i << "\n";
+                    break;
+                }
+
+            }
+            this->buttonClicked= false;
         }
     }
 
@@ -93,7 +137,7 @@ namespace engine{
                 if (event.type==sf::Event::MouseButtonReleased){
                     int mouseX = event.mouseButton.x;
                     int mouseY = event.mouseButton.y;
-                    std::cout<<"mouse X at "<<mouseX<<"| mouse Y at "<<mouseY<<std::endl;
+                    //std::cout<<"mouse X at "<<mouseX<<"| mouse Y at "<<mouseY<<std::endl;
                     this->handleClick(mouseX,mouseY);
                 }
             }
