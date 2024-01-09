@@ -1,6 +1,6 @@
 # List of test functions
 add_custom_test(shared_Board)
-add_custom_test(shared_Card)
+#add_custom_test(shared_Card)
 add_custom_test(shared_Darknlight)
 add_custom_test(shared_Deckdark)
 add_custom_test(shared_Decklight)

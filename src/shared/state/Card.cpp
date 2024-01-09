@@ -3,7 +3,6 @@
 //
 #include "Card.h"
 namespace state {
-    Card::Card() {}
+    Card::Card() = default;
 
-    void Card::activate_effect() {}
 }

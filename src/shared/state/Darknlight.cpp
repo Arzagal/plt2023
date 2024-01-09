@@ -11,7 +11,7 @@ namespace state{
         return this->card_id;
     }
 
-    void Darknlight:: play_effect (int target, Game* game) {
+    void Darknlight:: activate_effect (int target, Game* game) {
         game->add_wound(target, 1);
     }
 

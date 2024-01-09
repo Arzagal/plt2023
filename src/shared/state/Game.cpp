@@ -46,7 +46,6 @@ namespace state{
         else{
             res = nullptr;
         }
-
         return res;
     }
 
@@ -105,15 +104,18 @@ namespace state{
     }
 
     void Game::attack (int attacking, int attacked){
+        if(this->state != Attack){
+            std::cout << "It is not the attack phase ! \n";
+        }
         int value = this->playerListe[attacking]->get_attack();
         this->damage_count[attacked] += value;
     }
 
-    int Game::get_active_player() {
+    int Game::get_active_player() const {
         return this->playing;
     }
 
-    int Game::get_number_player() {
+    int Game::get_number_player() const {
         return this->player_number;
     }
 
