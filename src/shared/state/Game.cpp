@@ -46,6 +46,7 @@ namespace state{
         else{
             res = nullptr;
         }
+
         return res;
     }
 

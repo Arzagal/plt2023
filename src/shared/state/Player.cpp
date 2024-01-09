@@ -117,6 +117,7 @@ namespace state{
                 return "Vampire";
                 break;
         }
+        return "Error";
     }
 
     bool Player::isrevealed() {

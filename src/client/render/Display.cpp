@@ -159,8 +159,8 @@ namespace render {
 
     void Display::stateChanged(state::State, int playerNum){
         this->refresh();
-        std::thread displayThread (&Display::refresh, this);
-        displayThread.detach();
+//        std::thread displayThread (&Display::refresh, this);
+//        displayThread.detach();
     }
 }
 

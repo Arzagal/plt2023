@@ -5,7 +5,6 @@
 #include "../../src/shared/state/DeckVision.h"
 using namespace state;
 BOOST_AUTO_TEST_CASE(firstDeckVisionTest){
-        int card_id = 0;
         DeckVision dv = DeckVision();
         dv.draw ();
         BOOST_CHECK(1);
