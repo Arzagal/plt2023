@@ -31,7 +31,15 @@ namespace ai {
                     this->game->next_state();
                     break;
                 }
-                case state::Card_effect : case state::Finished:
+                case state::Card_effect :
+                    if(this->playerNumber == this->game->get_number_player()){
+                        this->game->activate_card_effect(this->playerNumber-1);
+                    }
+                    else{
+                        this->game->activate_card_effect(this->playerNumber+1);
+                    }
+                    this->game->next_state();
+                case state::Finished:
                     this->game->next_state();
                     break;
 

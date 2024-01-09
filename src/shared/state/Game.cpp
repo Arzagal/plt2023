@@ -25,6 +25,7 @@ namespace state{
             this->playing = 0;
         }
         this->turn++;
+        if(this->playerListe[this->playing]);
     }
 
     void Game::add_dmg (int target){
@@ -46,6 +47,7 @@ namespace state{
         else{
             res = nullptr;
         }
+        this->actualCard = res;
         return res;
     }
 
@@ -111,6 +113,11 @@ namespace state{
         this->damage_count[attacked] += value;
     }
 
+    void Game::activate_card_effect(int target) {
+        this->actualCard->activate_effect(target, this);
+        this->actualCard = nullptr;
+    }
+
     int Game::get_active_player() const {
         return this->playing;
     }
@@ -148,7 +155,7 @@ namespace state{
                 this->state = Location_effect;
                 break;
             case(Location_effect) :
-                this->state = Attack;
+                this->state = Card_effect;
                 this->active_board_effect(this->playing);
             case(Card_effect) :
                 this->state = Attack;

@@ -3,6 +3,8 @@
 //
 #include "Player.h"
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "UnreachableCode"
 namespace state{
     Player::Player (int number){
         this->attackNumber = 1;
@@ -112,10 +114,8 @@ namespace state{
                 break;
             case(state::Valkyrie) :
                 return "Valkyrie";
-                break;
             case(state::Vampire) :
                 return "Vampire";
-                break;
         }
         return "Error";
     }
@@ -128,3 +128,4 @@ namespace state{
         return this->team;
     }
 }
+#pragma clang diagnostic pop

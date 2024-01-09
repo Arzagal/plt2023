@@ -11,6 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 using namespace sf;
@@ -28,68 +29,78 @@ int main(int argc,char* argv[]){
     bg.setOrigin(bounds.width / 2, bounds.height / 2);
     bg.setPosition(950, 500);
 
-    state::Game *game = new state::Game();
-    render::Display display(window,  bg, game);
-    game->registerObserver(&display);
-    display.getGameState()->add_player();
-    display.getGameState()->add_player();
-    display.getGameState()->add_player();
-    display.getGameState()->start_game();
-    display.getGameState()->get_Player_liste()[0]->set_character(state::Agnes);
-    display.getGameState()->get_Player_liste()[1]->set_character(state::Allie);
-    display.getGameState()->get_Player_liste()[2]->set_character(state::Emi);
-    display.getGameState()->get_Player_liste()[3]->set_character(state::Franklin);
+    std::string strRenderDemo = "DemoRender";
+    if(0 == strcmp(argv[1], "DemoRender")) {
+        state::Game *game = new state::Game();
+        render::Display display(window, bg, game);
+        game->registerObserver(&display);
+        game->add_player();
+        game->add_player();
+        game->add_player();
+        game->start_game();
+        game->get_Player_liste()[0]->set_character(state::Agnes);
+        game->get_Player_liste()[1]->set_character(state::Allie);
+        game->get_Player_liste()[2]->set_character(state::Emi);
+        game->get_Player_liste()[3]->set_character(state::Franklin);
 
-    state::Darknlight * equipCardL = new state::Darknlight(17, 0);
+        state::Darknlight *equipCardL = new state::Darknlight(17, 0);
 
-    state::Darknlight * equipCardD = new state::Darknlight(4, 1);
+        state::Darknlight *equipCardD = new state::Darknlight(4, 1);
 
-    display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardL);
-    display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardL);
-    display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardL);
-    display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardL);
+        game->get_Player_liste()[0]->equipe_card(equipCardL);
+        game->get_Player_liste()[1]->equipe_card(equipCardL);
+        game->get_Player_liste()[2]->equipe_card(equipCardL);
+        game->get_Player_liste()[3]->equipe_card(equipCardL);
 
-    display.getGameState()->get_Player_liste()[0]->equipe_card(equipCardD);
-    display.getGameState()->get_Player_liste()[1]->equipe_card(equipCardD);
-    display.getGameState()->get_Player_liste()[2]->equipe_card(equipCardD);
-    display.getGameState()->get_Player_liste()[3]->equipe_card(equipCardD);
+        game->get_Player_liste()[0]->equipe_card(equipCardD);
+        game->get_Player_liste()[1]->equipe_card(equipCardD);
+        game->get_Player_liste()[2]->equipe_card(equipCardD);
+        game->get_Player_liste()[3]->equipe_card(equipCardD);
 
-    std::cout << "Into the while \n";
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
+        while (window.isOpen()) {
+            sf::Event event;
+            while (window.pollEvent(event)) {
 
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-            if (event.type == sf::Event::KeyPressed) {
-                std::cout << game->get_player_location(0);
-                switch (event.key.code) {
-
-                    case sf::Keyboard::Space:
-
-                        display.getGameState()->add_wound(0, rand() % 3);
-                        display.getGameState()->move_player(0, rand() % 9 +2);
-                        display.getGameState()->add_wound(1, rand() % 3);
-                        display.getGameState()->move_player(1, rand() % 9 +2);
-                        display.getGameState()->add_wound(2, rand() % 3);
-                        display.getGameState()->move_player(2, rand() % 9 +2);
-                        display.getGameState()->add_wound(3, rand() % 3);
-                        display.getGameState()->move_player(3, rand() % 9 +2);
-                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[0]->reveal();}
-                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[1]->reveal();}
-                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[2]->reveal();}
-                        if(rand()%6 == 5 ){display.getGameState()->get_Player_liste()[3]->reveal();}
-
-
-                        break;
-                    default:
-                        break;
+                if (event.type == sf::Event::Closed) {
+                    window.close();
                 }
-                game->notifyObserver(game->get_state(), game->get_active_player());
+                if (event.type == sf::Event::KeyPressed) {
+                    switch (event.key.code) {
+
+                        case sf::Keyboard::Space:
+
+                            game->add_wound(0, rand() % 3);
+                            game->move_player(0, rand() % 9 + 2);
+                            game->add_wound(1, rand() % 3);
+                            game->move_player(1, rand() % 9 + 2);
+                            game->add_wound(2, rand() % 3);
+                            game->move_player(2, rand() % 9 + 2);
+                            game->add_wound(3, rand() % 3);
+                            game->move_player(3, rand() % 9 + 2);
+                            if (rand() % 6 == 5) { game->get_Player_liste()[0]->reveal(); }
+                            if (rand() % 6 == 5) { game->get_Player_liste()[1]->reveal(); }
+                            if (rand() % 6 == 5) { game->get_Player_liste()[2]->reveal(); }
+                            if (rand() % 6 == 5) { game->get_Player_liste()[3]->reveal(); }
+
+
+                            break;
+                        default:
+                            break;
+                    }
+                    game->notifyObserver(game->get_state(), game->get_active_player());
+                }
             }
         }
     }
+    
+    else if(0 == strcmp(argv[1], "DemoRender")){
+        state::Game *game = new state::Game();
+        game->add_player();
+        game->add_player();
+        game->add_player();
+        game->add_player();
+        game->start_game();
 
+    }
     return 0;
 }
