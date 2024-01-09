@@ -7,6 +7,7 @@ namespace state{
     Player::Player (int number){
         this->attackNumber = 1;
         this->revealed = false;
+        this->isAlive = true;
         this->number = number;
     }
 
@@ -23,8 +24,8 @@ namespace state{
         this->hp = hp;
     }
 
-    void Player::set_character (Character character){
-        this->character = character;
+    void Player::set_character (Character characte){
+        this->character = characte;
         switch(character){
         case Ellen : case Emi : case Franklin : case Fu_ka : case Georges : case Gregor :
             this->team = Hunter;
@@ -124,5 +125,13 @@ namespace state{
 
     Teams Player::getTeams() {
         return this->team;
+    }
+
+    bool Player::is_alive() {
+        return this->isAlive;
+    }
+
+    void Player::kill() {
+        this->isAlive = false;
     }
 }

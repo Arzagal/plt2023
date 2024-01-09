@@ -169,6 +169,7 @@ namespace state{
                 std::cerr << "Error : the game is already finished";
                 break;
         }
+        this->did_someone_died();
         this->notifyObserver(this->state, this->playing);
     }
 
@@ -176,9 +177,32 @@ namespace state{
         for(Player* player : playerListe){
             if(player->is_alive()){
                 if(damage_count[player->get_number()] >= player->get_hp()){
-
+                    player->kill();
                 }
             }
+        }
+    }
+
+    void Game::check_win_conditions() {
+        int shadowAlive = 0;
+        int hunterAlive = 0;
+        for(Player *player : playerListe){
+            if(player->is_alive()){
+                if(Shadow == player->getTeams()){
+                    shadowAlive++;
+                }
+                else if(Hunter == player->getTeams()){
+                    hunterAlive++;
+                }
+            }
+        }
+        if(0 == shadowAlive){
+            this->state == Finished;
+            this->winner = Hunter;
+        }
+        if(0 == hunterAlive){
+            this->state == Finished;
+            this->winner = Shadow;
         }
     }
 }
