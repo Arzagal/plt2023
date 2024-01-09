@@ -116,56 +116,7 @@ namespace render{
         }
         file.close();
     }
-    void Const::printContents() {
-        std::cout << "Contents of woundLocations:\n";
-        for (const auto& pair : woundLocations) {
-            std::cout << "Key: " << pair.first << " - Values: ";
-            for (PlayerPosition playerPos : pair.second) {
-                std::cout << "Player " << playerPos.getPlayerNum() << " at ["
-                          << playerPos.getPixelX() << ", " << playerPos.getPixelY() << "] ";
-            }
-            std::cout << "\n";
-        }
 
-        std::cout << "\nContents of playerOnBoard:\n";
-        for (const auto& pair : playerOnBoard) {
-            std::cout << "Key: " << pair.first << " - Values: ";
-            for (PlayerPosition playerPos : pair.second) {
-                std::cout << "Player " << playerPos.getPlayerNum() << " at ["
-                          << playerPos.getPixelX() << ", " << playerPos.getPixelY() << "] ";
-            }
-            std::cout << "\n";
-        }
-
-        std::cout << "\nContents of cardsOnBoard:\n";
-        for (CardPosition cardPos : cardsOnBoard) {
-            std::cout << "Card at [" << cardPos.getPixelX() << ", "
-                      << cardPos.getPixelY() << "] with angle " << cardPos.getAngle() << " ";
-            std::cout << "\n";
-        }
-        std::cout << "\nContents of characterCards:\n";
-        for (CardPosition characterCard : characterCards) {
-            std::cout << "Card at [" << characterCard.getPixelX() << ", "
-                      << characterCard.getPixelY() << "] with angle " << characterCard.getAngle() << " ";
-            std::cout << "\n";
-        }
-        std::cout << "Contents of equipmentCards:\n";
-        for (const auto& pair : equipmentCards) {
-            std::cout << "Key: " << pair.first << " - Values: ";
-            for (CardPosition cardPos : pair.second) {
-                std::cout << "Equipment Card at ["
-                          << cardPos.getPixelX() << ", " << cardPos.getPixelY() << "] ";
-            }
-            std::cout << "\n";
-        }
-        std::cout << "\nContents of buttons:\n";
-        for (ButtonPosition myButton : buttons) {
-            std::cout << "Card at [" << myButton.getX() << ", "
-                      << myButton.getY() << "] Of type"<<myButton.getType();
-            std::cout << "\n";
-        }
-
-    }
     float Const::get_card_height() {
         return this->cardHeight;
     }
