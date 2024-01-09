@@ -3,6 +3,7 @@
 //
 #include "Engine.h"
 #include "MoveCommand.h"
+#include "NextCommand.h"
 #include "AttackCommand.h"
 #include <iostream>
 #include <thread>
@@ -61,6 +62,7 @@ namespace engine{
 
             }
             engine::MoveCommand move;
+            engine::NextCommand next;
             switch (i) {
 
 
@@ -72,6 +74,7 @@ namespace engine{
                     move.execute(this);
                     break;
                 case 2://NEXT
+                    next.execute(this);
                     break;
                 default:
                     break;
