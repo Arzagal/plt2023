@@ -3,11 +3,11 @@
 //
 #include "Engine.h"
 #include "MoveCommand.h"
+#include "AttackCommand.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include <cstdlib>
-#include "render/ButtonPosition.h"
+
 
 namespace engine{
     Engine::Engine(render::Display *myDisplay) {
@@ -93,6 +93,8 @@ namespace engine{
                     std::cout << "Clicked on Player" << i << "\n";
                     break;
                 }
+                engine::AttackCommand atk(i);
+                atk.execute(this);
 
             }
             this->buttonClicked= false;
@@ -109,31 +111,7 @@ namespace engine{
                 if (event.type == sf::Event::Closed) {
                     myDisplay->getWindow()->close();
                 }
-                if (event.type == sf::Event::KeyPressed) {
-                    switch (event.key.code) {
 
-                        case sf::Keyboard::Space:
-
-                            myDisplay->getGameState()->add_wound(0, rand() % 3);
-                            myDisplay->getGameState()->move_player(0, rand() % 9 +2);
-                            myDisplay->getGameState()->add_wound(1, rand() % 3);
-                            myDisplay->getGameState()->move_player(1, rand() % 9 +2);
-                            myDisplay->getGameState()->add_wound(2, rand() % 3);
-                            myDisplay->getGameState()->move_player(2, rand() % 9 +2);
-                            myDisplay->getGameState()->add_wound(3, rand() % 3);
-                            myDisplay->getGameState()->move_player(3, rand() % 9 +2);
-                            if(rand()%6 == 5 ){myDisplay->getGameState()->get_Player_liste()[0]->reveal();}
-                            if(rand()%6 == 5 ){myDisplay->getGameState()->get_Player_liste()[1]->reveal();}
-                            if(rand()%6 == 5 ){myDisplay->getGameState()->get_Player_liste()[2]->reveal();}
-                            if(rand()%6 == 5 ){myDisplay->getGameState()->get_Player_liste()[3]->reveal();}
-
-
-                            break;
-                        default:
-                            break;
-                    }
-                    myDisplay->getGameState()->notifyObserver(myDisplay->getGameState()->get_state(), myDisplay->getGameState()->get_active_player());
-                }
                 if (event.type==sf::Event::MouseButtonReleased){
                     int mouseX = event.mouseButton.x;
                     int mouseY = event.mouseButton.y;
