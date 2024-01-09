@@ -25,7 +25,9 @@ namespace state{
             this->playing = 0;
         }
         this->turn++;
-        if(this->playerListe[this->playing]);
+        if(!this->playerListe[this->playing]->is_alive()){
+            this->new_turn();
+        }
     }
 
     void Game::add_dmg (int target){
@@ -168,5 +170,15 @@ namespace state{
                 break;
         }
         this->notifyObserver(this->state, this->playing);
+    }
+
+    void Game::did_someone_died() {
+        for(Player* player : playerListe){
+            if(player->is_alive()){
+                if(damage_count[player->get_number()] >= player->get_hp()){
+
+                }
+            }
+        }
     }
 }

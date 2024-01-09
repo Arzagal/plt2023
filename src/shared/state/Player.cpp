@@ -3,8 +3,6 @@
 //
 #include "Player.h"
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "UnreachableCode"
 namespace state{
     Player::Player (int number){
         this->attackNumber = 1;
@@ -128,4 +126,3 @@ namespace state{
         return this->team;
     }
 }
-#pragma clang diagnostic pop
