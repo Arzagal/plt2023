@@ -5,8 +5,9 @@
 #include "RandomAi.h"
 
 namespace ai {
-    RandomAi::RandomAi(state::Game *game) {
+    RandomAi::RandomAi(state::Game *game, int playerNumber) {
         this->game = game;
+        this->playerNumber = playerNumber;
     }
 
     void RandomAi::stateChanged(state::State state, int playerNum) {
