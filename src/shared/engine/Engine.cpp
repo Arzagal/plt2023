@@ -9,15 +9,16 @@
 #include <thread>
 #include <chrono>
 
-
-namespace engine{
+namespace engine {
     Engine::Engine(render::Display *myDisplay) {
-        this->myDisplay=myDisplay;
-        this->buttonClicked= false;
-        /*clickThread = std::thread(&Engine::awaitUsrInput, this);
-        clickThread.detach();*/
+
+        this->myDisplay = myDisplay;
+        this->buttonClicked = false;
+
     }
+
     bool Engine::detectArea(float x, float y, float width, float height, float pointX, float pointY) {
+
         float halfWidth = width / 2.0f;
         float halfHeight = height / 2.0f;
 
@@ -34,11 +35,12 @@ namespace engine{
 
         return false;
     }
-    render::Display* Engine::get_display(){
+
+    render::Display *Engine::get_display() {
         return this->myDisplay;
     }
 
-    void Engine::handleClick(float x,float y) {
+    void Engine::handleClick(float x, float y) {
 
         std::vector<render::ButtonPosition> buttons = myDisplay->get_locations().get_buttons();
         std::vector<render::CardPosition> players = myDisplay->get_locations().get_characterCards();
@@ -53,18 +55,16 @@ namespace engine{
                 rectX = buttons[i].getX();
                 rectY = buttons[i].getY();
 
-
                 if (detectArea(rectX, rectY, rectWidth, rectHeight, x, y)) {
 
                     std::cout << "Clicked on Button" << i << "\n";
                     break;
                 }
-
             }
             engine::MoveCommand move;
             engine::NextCommand next;
-            switch (i) {
 
+            switch (i) {
 
                 case 0://ATK
                     this->buttonClicked = true;
@@ -79,17 +79,17 @@ namespace engine{
                 default:
                     break;
             }
-        } else {
-            std::cout<<"Selecting target"<<"\n";
+        }
+        else {
+            std::cout << "Selecting target" << "\n";
             int i;
             float rectWidth, rectHeight, rectX, rectY;
             rectWidth = myDisplay->get_locations().get_card_width();
             rectHeight = myDisplay->get_locations().get_card_height();
 
             for (i = 0; i < buttons.size(); i++) {
-                 rectX=players[i].getPixelX();
-                 rectY=players[i].getPixelY();
-
+                rectX = players[i].getPixelX();
+                rectY = players[i].getPixelY();
 
                 if (detectArea(rectX, rectY, rectWidth, rectHeight, x, y)) {
 
@@ -100,7 +100,7 @@ namespace engine{
                 atk.execute(this);
 
             }
-            this->buttonClicked= false;
+            this->buttonClicked = false;
         }
     }
 
@@ -115,15 +115,13 @@ namespace engine{
                     myDisplay->getWindow()->close();
                 }
 
-                if (event.type==sf::Event::MouseButtonReleased){
+                if (event.type == sf::Event::MouseButtonReleased) {
                     int mouseX = event.mouseButton.x;
                     int mouseY = event.mouseButton.y;
-                    //std::cout<<"mouse X at "<<mouseX<<"| mouse Y at "<<mouseY<<std::endl;
-                    this->handleClick(mouseX,mouseY);
+                    this->handleClick((float) mouseX, (float) mouseY);
                 }
             }
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
-
     }
 }

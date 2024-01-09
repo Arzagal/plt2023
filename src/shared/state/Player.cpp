@@ -23,9 +23,9 @@ namespace state{
         this->hp = hp;
     }
 
-    void Player::set_character (Character character){
-        this->character = character;
-        switch(character){
+    void Player::set_character (Character myCharacter){
+        this->character = myCharacter;
+        switch(myCharacter){
         case Ellen : case Emi : case Franklin : case Fu_ka : case Georges : case Gregor :
             this->team = Hunter;
             break;
