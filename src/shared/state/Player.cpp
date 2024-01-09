@@ -58,64 +58,44 @@ namespace state{
         switch( this->character) {
             case (state::Agnes) :
                 return "Agnes";
-                break;
             case(state::Allie) :
                 return "Allie";
-                break;
             case(state::Bob) :
                 return "Bob";
-                break;
             case(state::Bryan) :
                 return "Bryan";
-                break;
             case(state::Catherine) :
                 return "Catherine";
-                break;
             case(state::Charles) :
                 return "Charles";
-                break;
             case(state::Daniel) :
                 return "Daniel";
-                break;
             case(state::David) :
                 return "David";
-                break;
             case(state::Ellen) :
                 return "Ellen";
-                break;
             case(state::Emi) :
                 return "Emi";
-                break;
             case(state::Franklin) :
                 return "Franklin";
-                break;
             case(state::Fu_ka) :
                 return "Fu_ka";
-                break;
             case(state::Georges) :
                 return "Georges";
-                break;
             case(state::Gregor) :
                 return "Gregor";
-                break;
             case(state::Liche) :
                 return "Liche";
-                break;
             case(state::Loup_Garou) :
                 return "Loup_garou";
-                break;
             case(state::Metamorphe) :
                 return "Metamorphe";
-                break;
             case(state::Momie) :
                 return "Momie";
-                break;
             case(state::Valkyrie) :
                 return "Valkyrie";
-                break;
             case(state::Vampire) :
                 return "Vampire";
-                break;
         }
     }
 
