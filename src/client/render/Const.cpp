@@ -118,6 +118,9 @@ namespace render{
                 for (int i=1;i<4;i++) {
                     //std::cout<<"JE SUIS LA "<<std::endl;
                     buttons[i-1].setButton(i);
+                    buttons[i-1].setHeight(85);
+                    buttons[i-1].setWidth(85);
+
 
                 }
             }

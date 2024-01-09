@@ -29,6 +29,12 @@ namespace render{
     int ButtonPosition::getType() {
         return this->buttonType;
     }
+    void ButtonPosition::setHeight(float height) {
+        this->height=height;
+    }
+    void ButtonPosition::setWidth(float width) {
+        this->width=width;
+    }
     float ButtonPosition::get_height() {
         return this->height;
     }

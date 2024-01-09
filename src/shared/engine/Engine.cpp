@@ -32,7 +32,7 @@ namespace engine{
         return false;
     }
 
-    void Engine::handleClick(int x,int y) {
+    void Engine::handleClick(float x,float y) {
         std::vector<render::ButtonPosition> temp=myDisplay->get_locations().get_buttons();
         int i;
         float rectWidth,rectHeight,rectX,rectY;
@@ -42,7 +42,14 @@ namespace engine{
         for (i= 0; i < temp.size(); i++) {
             rectX=temp[i].getX();
             rectY=temp[i].getY();
+            /*std::cout<<"rectX"<<rectX<<"\n";
+            std::cout<<"rectY"<<rectY<<"\n";
+            std::cout<<"rectWidth"<<rectWidth<<"\n";
+            std::cout<<"rectHeight"<<rectHeight<<"\n";*/
+
             if (thisButton(rectX,rectY,rectWidth,rectHeight,x,y)){
+
+                std::cout<<"Clicked on Button"<<i<<"\n";
                 break;
             }
         }
