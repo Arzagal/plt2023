@@ -197,11 +197,11 @@ namespace state{
             }
         }
         if(0 == shadowAlive){
-            this->state == Finished;
+            this->state = Finished;
             this->winner = Hunter;
         }
         if(0 == hunterAlive){
-            this->state == Finished;
+            this->state = Finished;
             this->winner = Shadow;
         }
     }

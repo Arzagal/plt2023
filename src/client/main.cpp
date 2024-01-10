@@ -93,7 +93,7 @@ int main(int argc,char* argv[]){
         }
     }
     
-    else if(0 == strcmp(argv[1], "DemoRender")){
+    else if(0 == strcmp(argv[1], "DemoIA")){
         state::Game *game = new state::Game();
         game->add_player();
         game->add_player();
