@@ -1,6 +1,5 @@
 #include "Game.h"
 #include <iostream>
-#include <csignal>
 #include "algorithm"
 
 namespace state{
