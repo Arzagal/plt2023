@@ -3,7 +3,6 @@
 //
 #include <render/Display.h>
 #include <iostream>
-#include <thread>
 
 namespace render {
 
@@ -35,7 +34,6 @@ namespace render {
             }
         }
             window->display();
-        return;
     }
 
     sf::Texture Display::getCardImg(int cardId) {

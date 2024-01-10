@@ -79,8 +79,7 @@ namespace engine {
                 case 2://NEXT
                     next.execute(this);
                     break;
-                default:
-                    break;
+
             }
         }
         else {
@@ -121,6 +120,7 @@ namespace engine {
                 if (event.type == sf::Event::MouseButtonReleased) {
                     int mouseX = event.mouseButton.x;
                     int mouseY = event.mouseButton.y;
+                    std::cout<<"mouse X"<<mouseX<<" mouse Y"<<mouseY<<"\n";
                     this->handleClick((float) mouseX, (float) mouseY);
                 }
             }
