@@ -54,7 +54,7 @@ namespace engine {
             rectWidth = buttons[0].get_width();
             rectHeight = buttons[0].get_height();
 
-            for (i = 0; i < buttons.size(); i++) {
+            for (i = 0; i < (int)buttons.size(); i++) {
                 rectX = buttons[i].getX();
                 rectY = buttons[i].getY();
 
@@ -89,7 +89,7 @@ namespace engine {
             rectWidth = myDisplay->get_locations().get_card_width();
             rectHeight = myDisplay->get_locations().get_card_height();
 
-            for (i = 0; i < buttons.size(); i++) {
+            for (i = 0; i < (int)buttons.size(); i++) {
                 rectX = players[i].getPixelX();
                 rectY = players[i].getPixelY();
 

@@ -7,7 +7,7 @@
 
 namespace state{
     DeckDark::DeckDark() {
-
+        this->deck_initialize();
     }
     Darknlight* DeckDark:: draw (){
 

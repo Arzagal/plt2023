@@ -11,6 +11,6 @@ namespace engine{
         int atk=engine->get_display()->getGameState()->get_Player_liste()[player]->get_attack();
         engine->get_display()->getGameState()->add_wound(target,atk);
         engine->get_display()->getGameState()->notifyObserver(engine->get_display()->getGameState()->get_state(), engine->get_display()->getGameState()->get_active_player());
-
+        return true;
     }
 }

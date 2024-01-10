@@ -13,6 +13,6 @@ namespace engine{
         std::cout<<"Current Player"<<player<<"\n";
         engine->get_display()->getGameState()->move_player(player,rand() % 9 +2);
         engine->get_display()->getGameState()->notifyObserver(engine->get_display()->getGameState()->get_state(), engine->get_display()->getGameState()->get_active_player());
-
+        return true;
     }
 }
