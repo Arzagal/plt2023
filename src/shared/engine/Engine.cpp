@@ -40,6 +40,9 @@ namespace engine {
         return this->myDisplay;
     }
 
+    state::State& Engine::getState (){
+        return currentState;
+    }
     void Engine::handleClick(float x, float y) {
 
         std::vector<render::ButtonPosition> buttons = myDisplay->get_locations().get_buttons();
