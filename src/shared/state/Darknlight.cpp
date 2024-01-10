@@ -12,7 +12,12 @@ namespace state{
     }
 
     void Darknlight:: activate_effect (int target, Game* game) {
-        game->add_wound(target, 1);
+        if(this->card_type == 1) {
+            game->add_wound(target, 1);
+        }
+        else if(this->card_type == 0){
+            game->heal(target, 1);
+        }
     }
 
     int Darknlight::get_card_type() {

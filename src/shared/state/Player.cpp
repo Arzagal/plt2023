@@ -9,6 +9,7 @@ namespace state{
         this->revealed = false;
         this->isAlive = true;
         this->number = number;
+        this->hp = 14;
     }
 
     void Player::active_character_effect (){}
@@ -26,7 +27,7 @@ namespace state{
 
     void Player::set_character (Character characte){
         this->character = characte;
-        switch(character){
+        switch(this->character){
         case Ellen : case Emi : case Franklin : case Fu_ka : case Georges : case Gregor :
             this->team = Hunter;
             break;

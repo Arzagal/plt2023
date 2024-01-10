@@ -8,10 +8,11 @@
 
 #include <state.h>
 #include <render/Display.h>
-
+#include <ai/RandomAi.h>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstring>
+#include <thread>
 
 using namespace std;
 using namespace sf;
@@ -29,7 +30,6 @@ int main(int argc,char* argv[]){
     bg.setOrigin(bounds.width / 2, bounds.height / 2);
     bg.setPosition(950, 500);
 
-    std::string strRenderDemo = "DemoRender";
     if(0 == strcmp(argv[1], "DemoRender")) {
         state::Game *game = new state::Game();
         render::Display display(window, bg, game);
@@ -98,9 +98,27 @@ int main(int argc,char* argv[]){
         game->add_player();
         game->add_player();
         game->add_player();
-        game->add_player();
-        game->start_game();
+        ai::RandomAi *ai1 = new ai::RandomAi(game, 0);
+        ai::RandomAi *ai2 = new ai::RandomAi(game, 1);
+        ai::RandomAi *ai3 = new ai::RandomAi(game, 2);
+        ai::RandomAi *ai4 = new ai::RandomAi(game, 3);
 
+        render::Display display(window, bg, game);
+        game->registerObserver(&display);
+        game->registerObserver(ai1);
+        game->registerObserver(ai2);
+        game->registerObserver(ai3);
+        game->registerObserver(ai4);
+        std::thread threadGame(&state::Game::start_game, game);
+        while(window.isOpen()){
+            sf::Event event;
+            while (window.pollEvent(event)) {
+
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                }
+            }
+        }
     }
     return 0;
 }
