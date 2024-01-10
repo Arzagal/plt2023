@@ -99,7 +99,7 @@ namespace render{
             else if (line=="Boutons"){
                 while (getline(file, line) && !line.empty()) {
                     std::istringstream iss(line);
-                    float pixelX, pixelY,width,height;
+                    float pixelX, pixelY;
                     iss >> pixelX >> pixelY ;
                     std::cout<<pixelX<<pixelY<<std::endl;
                     buttons.emplace_back(pixelX, pixelY);

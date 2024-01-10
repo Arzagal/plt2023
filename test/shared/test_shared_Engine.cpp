@@ -12,6 +12,7 @@ BOOST_AUTO_TEST_CASE(firstEngineTest){
     sf::RenderWindow window;
 
     sf::Sprite mySprite=sf::Sprite();
+    myGame.start_game();
     Display myDisplay=Display(window,mySprite,&myGame);
     Engine myEngine= Engine(&myDisplay);
     myEngine.get_display();

@@ -5,7 +5,6 @@
 #include "../../src/shared/state/DeckLight.h"
 using namespace state;
 BOOST_AUTO_TEST_CASE(firstDecklightTest){
-        int card_id = 0;
         DeckLight dl = DeckLight();
         dl.draw ();
         BOOST_CHECK(1);
