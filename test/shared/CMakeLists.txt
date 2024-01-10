@@ -10,6 +10,6 @@ add_custom_test(shared_Player)
 add_custom_test(shared_Vision)
 add_custom_test(shared_Observer)
 add_custom_test(shared_Observable)
-
+add_custom_test(shared_RandomAI)
 # vim: set sw=2 sts=2 et:
 
