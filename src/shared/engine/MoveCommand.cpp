@@ -1,6 +1,3 @@
-//
-// Created by franzozich on 18/12/23.
-//
 #include <iostream>
 #include "MoveCommand.h"
 namespace engine{

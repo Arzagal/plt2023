@@ -1,7 +1,3 @@
-//
-// Created by louis on 12/18/23.
-//
-
 #include "Observable.h"
 #include <iostream>
 

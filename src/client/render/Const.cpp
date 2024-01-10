@@ -1,6 +1,3 @@
-//
-// Created by franzozich on 13/11/23.
-//
 #include <render/Const.h>
 #include <sstream>
 #include <iostream>

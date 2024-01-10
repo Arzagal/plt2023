@@ -1,6 +1,3 @@
-//
-// Created by franzozich on 10/01/24.
-//
 #include <boost/test/unit_test.hpp>
 #include "../../src/shared/engine/NextCommand.h"
 

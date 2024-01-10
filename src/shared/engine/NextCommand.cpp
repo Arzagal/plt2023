@@ -1,6 +1,3 @@
-//
-// Created by franzozich on 18/12/23.
-//
 #include "NextCommand.h"
 namespace engine{
     NextCommand::NextCommand() {
