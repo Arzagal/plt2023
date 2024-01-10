@@ -1,6 +1,3 @@
-//
-// Created by louis on 10/24/23.
-//
 #include "DeckDark.h"
 #include <algorithm>
 #include <random>

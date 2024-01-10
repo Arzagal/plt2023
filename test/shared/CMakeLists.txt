@@ -11,5 +11,13 @@ add_custom_test(shared_Vision)
 add_custom_test(shared_Observer)
 add_custom_test(shared_Observable)
 add_custom_test(shared_RandomAI)
+add_custom_test(shared_Engine)
+add_custom_test(shared_AttackCommand)
+add_custom_test(shared_MoveCommand)
+add_custom_test(shared_NextCommand)
+
+
+
+
 # vim: set sw=2 sts=2 et:
 

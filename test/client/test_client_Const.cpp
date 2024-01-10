@@ -1,6 +1,3 @@
-//
-// Created by louis on 11/27/23.
-//
 #include "/usr/include/boost/test/unit_test.hpp"
 #include "../../src/client/render.h"
 
@@ -26,6 +23,6 @@ BOOST_AUTO_TEST_CASE(DisplayTest) {
 
     std::vector<CardPosition> CharaPos = constTest->get_characterCards();
     BOOST_CHECK_EQUAL(CharaPos[2].getAngle(), 90);
-    constTest->printContents();
+
 
 }

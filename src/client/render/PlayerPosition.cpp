@@ -1,6 +1,3 @@
-//
-// Created by louis on 11/12/23.
-//
 #include "PlayerPosition.h"
 
 namespace render{
