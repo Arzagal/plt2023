@@ -1,5 +1,4 @@
 #include "Observable.h"
-#include <iostream>
 
 namespace state{
     Observable::Observable(){}

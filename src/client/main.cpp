@@ -1,15 +1,11 @@
 #include <iostream>
 
 #include <SFML/Graphics/Texture.hpp>
-
-// Fin test SFML
-
 #include <state.h>
 #include <render/Display.h>
 #include "engine/Engine.h"
 #include <ai/RandomAi.h>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include <cstring>
 #include <thread>
 
@@ -59,7 +55,7 @@ int main(int argc,char* argv[]){
         engine::Engine engine(&display);
         engine.awaitUsrInput();
     }
-    else if(0 == strcmp(argv[1], "DemoIA")){
+    else if(0 == strcmp(argv[1], "DemoAI")){
         state::Game *game = new state::Game();
         game->add_player();
         game->add_player();

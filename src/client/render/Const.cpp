@@ -117,24 +117,31 @@ namespace render{
     float Const::get_card_height() {
         return this->cardHeight;
     }
+
     float Const::get_card_width() {
         return this->cardWidth;
     }
+
     std::map<int, std::vector<PlayerPosition>> Const::get_woundLocations() {
         return woundLocations;
     }
+
     std::map<int, std::vector<PlayerPosition>> Const::get_playerOnBoard() {
         return playerOnBoard;
     }
+
     std::vector<CardPosition> Const::get_cardsOnBoard() {
         return cardsOnBoard;
     }
+
     std::vector<CardPosition> Const::get_characterCards() {
         return characterCards;
     }
+
     std::map<int,std::vector<CardPosition>> Const::get_equipmentCards() {
         return equipmentCards;
     }
+
     std::vector<ButtonPosition> Const::get_buttons() {
         return buttons;
     }
