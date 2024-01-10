@@ -30,9 +30,6 @@ namespace render {
                 this->draw_pawns(i);
                 this->draw_equipped_card(i);
             }
-            for (int i = 1; i < 4; i++) {
-                this->draw_button(i);
-            }
         }
             window->display();
         return;
@@ -81,7 +78,7 @@ namespace render {
                 id = gameState->get_Player_liste()[PlayerNum]->get_equipped_card()[i]->get_id() + output;
             }
             sf::Texture texture = this->getCardImg(id);
-            sf::Vector2f size = sf::Vector2f(myLocations.get_card_width(),myLocations.get_card_height());
+            sf::Vector2f size = sf::Vector2f(200,300);
 
             sf::Vector2f position = myLocations.get_equipmentCards().at(PlayerNum+1)[i].get_position();
             this->draw(texture, size, position, 0);
@@ -124,7 +121,7 @@ namespace render {
         for(int i =0; i<6;i++){
             sf::Texture texture;
             texture.loadFromFile("./ShadowHunter_Card/Role_Card/Bob_1.png");
-            sf::Vector2f size = sf::Vector2f(myLocations.get_card_width(),myLocations.get_card_height());
+            sf::Vector2f size = sf::Vector2f(200,300);
             sf::Vector2f position = this->myLocations.get_cardsOnBoard()[i].get_position();
             float angle = this->myLocations.get_cardsOnBoard()[i].getAngle();
             this->draw(texture, size, position, angle);
@@ -141,31 +138,11 @@ namespace render {
         else{
             texture.loadFromFile("./ShadowHunter_Card/Back_Card/role_back.png");
         }
-        sf::Vector2f size = sf::Vector2f(myLocations.get_card_width(),myLocations.get_card_height());
+        sf::Vector2f size = sf::Vector2f(200,300);
         sf::Vector2f position;
         position = myLocations.get_characterCards()[PlayerNum].get_position();
         float angle = myLocations.get_characterCards()[PlayerNum].getAngle();
         this->draw(texture, size, position, angle);
-
-    }
-    void Display::draw_button(int buttonType) {
-        const std::string path="./ShadowHunter_Card/Buttons/";
-        sf::Texture texture;
-        switch (buttonType) {
-            case 1:
-                texture.loadFromFile(path+"atk.png");
-                break;
-            case 2:
-                texture.loadFromFile(path+"move.png");
-                break;
-            case 3:
-                texture.loadFromFile(path+"next.png");
-                break;
-
-        }
-        sf::Vector2f size = sf::Vector2f(90,90);
-        sf::Vector2f position=myLocations.get_buttons()[buttonType-1].get_position();
-        this->draw(texture,size,position,0);
 
     }
     void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position, float angle) { //Function to draw the given image on a certain position
@@ -184,12 +161,6 @@ namespace render {
         this->refresh();
 //        std::thread displayThread (&Display::refresh, this);
 //        displayThread.detach();
-    }
-    sf::RenderWindow* Display::getWindow() {
-        return window;
-    }
-    Const Display::get_locations() {
-        return myLocations;
     }
 }
 
