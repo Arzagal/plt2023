@@ -7,7 +7,9 @@ namespace state{
     Player::Player (int number){
         this->attackNumber = 1;
         this->revealed = false;
+        this->isAlive = true;
         this->number = number;
+        this->hp = 14;
     }
 
     void Player::active_character_effect (){}
@@ -23,8 +25,19 @@ namespace state{
         this->hp = hp;
     }
 
-    void Player::set_character (Character character){
-        this->character = character;
+    void Player::set_character (Character characte){
+        this->character = characte;
+        switch(this->character){
+        case Ellen : case Emi : case Franklin : case Fu_ka : case Georges : case Gregor :
+            this->team = Hunter;
+            break;
+        case Liche : case Loup_Garou : case Metamorphe : case Momie : case Valkyrie : case Vampire :
+            this->team = Shadow;
+            break;
+        default:
+            this->team = Neutral;
+            break;
+        }
     }
 
     int Player::get_number (){
@@ -101,14 +114,25 @@ namespace state{
                 break;
             case(state::Valkyrie) :
                 return "Valkyrie";
-                break;
             case(state::Vampire) :
                 return "Vampire";
-                break;
         }
+        return "Error";
     }
 
     bool Player::isrevealed() {
         return this->revealed;
+    }
+
+    Teams Player::getTeams() {
+        return this->team;
+    }
+
+    bool Player::is_alive() {
+        return this->isAlive;
+    }
+
+    void Player::kill() {
+        this->isAlive = false;
     }
 }

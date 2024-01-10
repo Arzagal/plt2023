@@ -5,33 +5,35 @@
 #include "../../src/shared/state/Player.h"
 #include "../../src/shared/state.h"
 using namespace state;
-    BOOST_AUTO_TEST_CASE(firstPlayerTest){
-        int num1 = 0;
-        int num2 = 1;
-        Player player = Player(num1);
-        Player target = Player(num2);
-        Character character;
-        Darknlight* card = new Darknlight();
-        int hp;
+BOOST_AUTO_TEST_CASE(firstPlayerTest){
+    int num1 = 0;
+    int num2 = 1;
+    Player player = Player(num1);
+    Player target = Player(num2);
+    Character character = Allie;
+    Darknlight* card = new Darknlight(1,0);
+    int hp = 10;
 
-        player.active_character_effect ();
-        player.active_character_effect();
-        player.reveal ();
-        int hp_res = player.get_hp ();
-        player.set_hp (hp);
+    player.active_character_effect ();
+    player.active_character_effect();
+    player.reveal ();
+    player.get_hp ();
+    player.set_hp (hp);
 
-        player.set_character (character);
-        int get_number = player.get_number();
-        std::vector <Darknlight*> equipped;
-        equipped = player.get_equipped_card ();
-        player.active_board_effect ();
+    player.set_character (character);
+    int get_number = player.get_number();
+    BOOST_CHECK_EQUAL(get_number, num1);
+    std::vector <Darknlight*> equipped;
+    equipped = player.get_equipped_card ();
+    BOOST_CHECK(equipped.empty());
+    player.active_board_effect ();
 
-        player.equipe_card (card);
+    player.equipe_card (card);
 
-        player.set_character(Allie);
-        BOOST_CHECK_EQUAL(player.getCharacter(), "Allie");
-        player.set_character(Agnes);
-        BOOST_CHECK_EQUAL(player.getCharacter(), "Agnes");
+    player.set_character(Allie);
+    BOOST_CHECK_EQUAL(player.getCharacter(), "Allie");
+    player.set_character(Agnes);
+    BOOST_CHECK_EQUAL(player.getCharacter(), "Agnes");
     player.set_character(Bob);
     BOOST_CHECK_EQUAL(player.getCharacter(), "Bob");
     player.set_character(Bryan);
@@ -68,5 +70,5 @@ using namespace state;
     BOOST_CHECK_EQUAL(player.getCharacter(), "Valkyrie");
     player.set_character(Vampire);
     BOOST_CHECK_EQUAL(player.getCharacter(), "Vampire");
-        BOOST_CHECK(1);
+    BOOST_CHECK(1);
     }

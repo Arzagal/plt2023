@@ -26,6 +26,6 @@ BOOST_AUTO_TEST_CASE(DisplayTest) {
 
     std::vector<CardPosition> CharaPos = constTest->get_characterCards();
     BOOST_CHECK_EQUAL(CharaPos[2].getAngle(), 90);
-    constTest->printContents();
+
 
 }
