@@ -2,6 +2,10 @@
 // Created by louis on 12/18/23.
 //
 
+#include <csignal>
+#include <iostream>
+#include <regex>
+#include <wait.h>
 #include "RandomAi.h"
 
 namespace ai {
@@ -11,6 +15,8 @@ namespace ai {
     }
 
     void RandomAi::stateChanged(state::State state, int playerNum) {
+        std::vector<int> neighbours;
+        int i;
         if (playerNum == this->playerNumber) {
             switch (state) {
                 case state::Playing :
@@ -23,29 +29,27 @@ namespace ai {
                 case state::Location_effect :
                     this->game->next_state();
                     break;
-                case state::Attack : {
-                    std::vector<int> neighbours = this->game->get_neighbours(playerNum);
-                    if (neighbours.empty()) {
-                        this->game->attack(this->playerNumber, neighbours[0]);
+                case state::Attack :
+                    neighbours = this->game->get_neighbours(playerNum);
+                    if (!neighbours.empty()) {
+                        i = 0;
+                        while(!this->game->get_Player_liste()[i]->is_alive() && i<int(neighbours.size())-1){
+                            i++;
+                        }
+                        this->game->attack(this->playerNumber, neighbours[i]);
                     }
-                    this->game->next_state();
-                    break;
-                }
-                case state::Card_effect :
-                    if(this->playerNumber == this->game->get_number_player()){
-                        this->game->activate_card_effect(this->playerNumber-1);
-                    }
-                    else{
-                        this->game->activate_card_effect(this->playerNumber+1);
-                    }
-                    this->game->next_state();
-                case state::Finished:
                     this->game->next_state();
                     break;
 
-                case state::Starting:
+                case state::Card_effect :
+                    i = rand() % 4;
+                    this->game->activate_card_effect(i);
+                    this->game->next_state();
+                    break;
+                case state::Finished: case state::Starting:
                     break;
             }
+
         }
     }
 }

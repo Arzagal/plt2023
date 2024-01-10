@@ -56,7 +56,7 @@ namespace render {
 
     void Display::draw_wounds(int PlayerNum) {
         sf::Texture pawnTexture;
-        sf::Vector2f size = sf::Vector2f(10,10);
+        sf::Vector2f size = sf::Vector2f(20,20);
 
         pawnTexture.loadFromFile("./ShadowHunter_Card/Board/Pawn_" + std::to_string(PlayerNum+1) + ".png");
         sf::Vector2f position = myLocations.get_woundLocations().at(gameState->get_wounds(PlayerNum)+1)[PlayerNum].get_position();
@@ -89,7 +89,7 @@ namespace render {
     void Display::draw_pawns(int PlayerNum) {
         int id  = gameState->get_player_location(PlayerNum);
         sf::Texture pawnTexture;
-        sf::Vector2f size = sf::Vector2f(10,10);
+        sf::Vector2f size = sf::Vector2f(20,20);
 
         pawnTexture.loadFromFile("./ShadowHunter_Card/Board/Pawn_" + std::to_string(PlayerNum+1) + ".png");
         sf::Vector2f position;
