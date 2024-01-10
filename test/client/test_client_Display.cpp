@@ -1,6 +1,3 @@
-//
-// Created by louis on 11/27/23.
-//
 #include "/usr/include/boost/test/unit_test.hpp"
 #include "../../src/client/render.h"
 #include <SFML/Graphics.hpp>

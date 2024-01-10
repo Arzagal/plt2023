@@ -1,6 +1,3 @@
-//
-// Created by franzozich on 19/12/23.
-//
 #include "ButtonPosition.h"
 namespace render{
     ButtonPosition::ButtonPosition(float x, float y) {

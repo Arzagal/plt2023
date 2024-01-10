@@ -1,7 +1,3 @@
-//
-// Created by louis on 11/7/23.
-//
-
 #include <boost/test/unit_test.hpp>
 #include "../../src/shared/state/Darknlight.h"
 using namespace state;

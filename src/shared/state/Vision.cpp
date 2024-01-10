@@ -1,6 +1,3 @@
-//
-// Created by louis on 10/24/23.
-//
 #include <algorithm>
 #include "Vision.h"
 
