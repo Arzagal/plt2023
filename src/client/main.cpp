@@ -60,7 +60,7 @@ int main(int argc,char* argv[]){
 
         engine::Engine engine(&display);
         engine.awaitUsrInput();
-}
+    }
     else if(0 == strcmp(argv[1], "DemoIA")){
         state::Game *game = new state::Game();
         game->add_player();
