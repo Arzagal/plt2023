@@ -4,7 +4,7 @@
 
 ## Introduction
 This project goal is to recreate the game "Shadow hunter" in C++, as a final study project.
-It is conducted by 3 third-year enginnering students :
+It is conducted by 3 third-year engineering students :
 - [VINCKEL François](https://github.com/Voldelol)
 - [FAY Louis](https://github.com/Arzagal)
 - [FUSSELIER Thomas](https://github.com/Krustybe)

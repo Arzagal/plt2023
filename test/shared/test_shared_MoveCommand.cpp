@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_CASE(firstMoveCommandTest){
     sf::RenderWindow window;
     sf::Sprite mySprite=sf::Sprite();
     Display myDisplay=Display(window,mySprite,&myGame);
-    Engine myEngine= Engine(&myDisplay);
+    Engine myEngine= Engine(&myDisplay,&myGame,0);
     MoveCommand move=MoveCommand();
     move.execute(&myEngine);
 }

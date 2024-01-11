@@ -52,7 +52,7 @@ int main(int argc,char* argv[]){
         game->get_Player_liste()[2]->equipe_card(equipCardD);
         game->get_Player_liste()[3]->equipe_card(equipCardD);
 
-        engine::Engine engine(&display);
+        engine::Engine engine(&display, game, 0);
         engine.awaitUsrInput();
     }
     else if(0 == strcmp(argv[1], "DemoAI")){
@@ -80,6 +80,25 @@ int main(int argc,char* argv[]){
                 }
             }
         }
+    }
+    else if(0 == strcmp(argv[1], "DemoEngine")){
+        state::Game *game = new state::Game();
+        render::Display display(window, bg, game);
+        game->registerObserver(&display);
+        game->add_player();
+        game->add_player();
+        game->add_player();
+
+        ai::RandomAi *ai2 = new ai::RandomAi(game, 1);
+        ai::RandomAi *ai3 = new ai::RandomAi(game, 2);
+        ai::RandomAi *ai4 = new ai::RandomAi(game, 3);
+        game->registerObserver(ai2);
+        game->registerObserver(ai3);
+        game->registerObserver(ai4);
+
+        game->start_game();
+        engine::Engine engine(&display, game, 0);
+        engine.awaitUsrInput();
     }
     return 0;
 }

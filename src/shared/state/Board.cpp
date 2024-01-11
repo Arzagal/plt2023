@@ -1,10 +1,17 @@
 #include <algorithm>
+#include <chrono>
+#include <random>
 #include "Board.h"
 namespace state {
     Board::Board(int len) {
         this->player_location = std::vector<int>();
         for(int i = 0; i <len; i++){
-            this->player_location.push_back(rand()%6);
+            unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+            std::default_random_engine randomness(seed);
+            std::uniform_int_distribution<int> distribution(0, 6-1);
+            // Generate a random integer.
+            int randomInt = distribution(randomness);
+            this->player_location.push_back(randomInt);
         }
     }
 
@@ -28,21 +35,21 @@ namespace state {
         std::vector<int> res;
         if(i == 0 || i ==1){
             for(int j =0; j < (int)this->player_location.size(); j++){
-                if(j != player && (j == 0 || j == 1)){
+                if(j != player && (player_location[j] == 0 || player_location[j] == 1)){
                     res.push_back(j);
                 }
             }
         }
         else if(i == 2 || i ==3){
             for(int j =0; j < (int)this->player_location.size(); j++){
-                if(j != player && (j == 2 || j == 3)){
+                if(j != player && (player_location[j] == 2 || player_location[j] == 3)){
                     res.push_back(j);
                 }
             }
         }
         else if(i == 4 || i ==5){
             for(int j =0; j < (int)this->player_location.size(); j++){
-                if(j != player && (j == 4 || j == 5)){
+                if(j != player && (player_location[j] == 4 || player_location[j] == 5)){
                     res.push_back(j);
                 }
             }

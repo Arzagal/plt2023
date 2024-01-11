@@ -2,16 +2,18 @@
 #include "MoveCommand.h"
 #include "NextCommand.h"
 #include "AttackCommand.h"
+#include "CardCommand.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
 
 namespace engine {
-    Engine::Engine(render::Display *myDisplay) {
+    Engine::Engine(render::Display *myDisplay, state::Game* game, int player_number) {
 
         this->myDisplay = myDisplay;
         this->buttonClicked = false;
-
+        this->game = game;
+        this->playerNum = player_number;
     }
 
     bool Engine::detectArea(float x, float y, float width, float height, float pointX, float pointY) {
@@ -42,64 +44,73 @@ namespace engine {
     }
     void Engine::handleClick(float x, float y) {
 
-        std::vector<render::ButtonPosition> buttons = myDisplay->get_locations().get_buttons();
-        std::vector<render::CardPosition> players = myDisplay->get_locations().get_characterCards();
+        if (this->game->get_active_player() == this->playerNum) {
+            std::vector<render::ButtonPosition> buttons = myDisplay->get_locations().get_buttons();
+            std::vector<render::CardPosition> players = myDisplay->get_locations().get_characterCards();
 
-        if (!buttonClicked) {
-            int i;
-            float rectWidth, rectHeight, rectX, rectY;
-            rectWidth = buttons[0].get_width();
-            rectHeight = buttons[0].get_height();
+            if (!buttonClicked) {
+                int i;
+                float rectWidth, rectHeight, rectX, rectY;
+                rectWidth = buttons[0].get_width();
+                rectHeight = buttons[0].get_height();
 
-            for (i = 0; i < (int)buttons.size(); i++) {
-                rectX = buttons[i].getX();
-                rectY = buttons[i].getY();
+                for (i = 0; i < (int) buttons.size(); i++) {
+                    rectX = buttons[i].getX();
+                    rectY = buttons[i].getY();
 
-                if (detectArea(rectX, rectY, rectWidth, rectHeight, x, y)) {
+                    if (detectArea(rectX, rectY, rectWidth, rectHeight, x, y)) {
 
-                    std::cout << "Clicked on Button" << i << "\n";
-                    break;
+                        std::cout << "Clicked on Button" << i << "\n";
+                        break;
+                    }
                 }
-            }
-            engine::MoveCommand move;
-            engine::NextCommand next;
+                engine::MoveCommand move;
+                engine::NextCommand next;
 
-            switch (i) {
+                switch (i) {
+                    case 0://ATK
+                        if (this->game->get_state() == state::Attack || this->game->get_state() == state::Card_effect) {
+                            this->buttonClicked = true;
+                            std::cout << "Atk mode" << "\n";
+                        }
+                        break;
+                    case 1://MOV
+                        if (this->game->get_state() == state::Move) {
+                            move.execute(this);
+                        }
+                        break;
+                    case 2://NEXT
+                        next.execute(this);
+                        break;
 
-                case 0://ATK
-                    this->buttonClicked = true;
-                    std::cout << "Atk mode" << "\n";
-                    break;
-                case 1://MOV
-                    move.execute(this);
-                    break;
-                case 2://NEXT
-                    next.execute(this);
-                    break;
-
-            }
-        }
-        else {
-            std::cout << "Selecting target" << "\n";
-            int i;
-            float rectWidth, rectHeight, rectX, rectY;
-            rectWidth = myDisplay->get_locations().get_card_width();
-            rectHeight = myDisplay->get_locations().get_card_height();
-
-            for (i = 0; i < (int)buttons.size(); i++) {
-                rectX = players[i].getPixelX();
-                rectY = players[i].getPixelY();
-
-                if (detectArea(rectX, rectY, rectWidth, rectHeight, x, y)) {
-
-                    std::cout << "Clicked on Player" << i << "\n";
-                    break;
                 }
-                engine::AttackCommand atk(i);
-                atk.execute(this);
+            } else {
+                std::cout << "Selecting target" << "\n";
+                int i;
+                float rectWidth, rectHeight, rectX, rectY;
+                rectWidth = myDisplay->get_locations().get_card_width();
+                rectHeight = myDisplay->get_locations().get_card_height();
 
+                for (i = 0; i < 4; i++) {
+                    rectX = players[i].getPixelX();
+                    rectY = players[i].getPixelY();
+
+                    if (detectArea(rectX, rectY, rectWidth, rectHeight, x, y)) {
+                        std::cout << "Clicked on Player" << i << "\n";
+                        if(this->game->get_state() == state::Attack) {
+                            engine::AttackCommand atk(i);
+                            atk.execute(this);
+                        }
+                        else if(this->game->get_state() == state::Card_effect) {
+                            engine::CardCommand card(i);
+                            card.execute(this);
+                        }
+
+                        break;
+                    }
+                }
+                this->buttonClicked = false;
             }
-            this->buttonClicked = false;
         }
     }
 
@@ -123,5 +134,9 @@ namespace engine {
             }
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
+    }
+
+    state::Game *Engine::get_game() {
+        return this->game;
     }
 }

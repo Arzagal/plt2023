@@ -138,8 +138,9 @@ namespace state{
             std::cout << "Invalid card target \n";
             return;
         }
+        std::cout << "Activating card effect with target " << target<< std::endl;
         this->actualCard->activate_effect(target, this);
-        this->actualCard = nullptr;
+//        this->actualCard = nullptr;
         std::cout << "Activating acard effect ! \n";
     }
 

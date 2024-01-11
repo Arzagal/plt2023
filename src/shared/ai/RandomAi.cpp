@@ -6,6 +6,8 @@
 #include <iostream>
 #include <regex>
 #include <wait.h>
+#include <chrono>
+#include <random>
 #include "RandomAi.h"
 
 namespace ai {
@@ -17,13 +19,20 @@ namespace ai {
     void RandomAi::stateChanged(state::State state, int playerNum) {
         std::vector<int> neighbours;
         int i;
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine randomness(seed);
+        std::uniform_int_distribution<int> distribution6(0, 6-1);
+        std::uniform_int_distribution<int> distribution4(0, 4-1);
+        // Generate a random integer.
+        int randomInt6 = distribution6(randomness);
+        int randomInt4 = distribution6(randomness);
         if (playerNum == this->playerNumber) {
             switch (state) {
                 case state::Playing :
                     this->game->next_state();
                     break;
                 case state::Move :
-                    this->game->move_player(this->playerNumber, rand()%6 + rand()%4 + 2);
+                    this->game->move_player(this->playerNumber, randomInt6 + randomInt4 + 2);
                     this->game->next_state();
                     break;
                 case state::Location_effect :
