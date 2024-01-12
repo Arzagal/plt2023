@@ -133,5 +133,12 @@ namespace state{
         return this->is_equipped;
     }
 
+    int Darknlight::getCard_type() const {
+        return this->card_type;
+    }
+
+    int Darknlight::getCard_id() const {
+        return this->card_id;
+    }
 
 }

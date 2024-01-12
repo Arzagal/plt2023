@@ -243,6 +243,7 @@ namespace state{
         if(this->actualCard != nullptr){
             res.push_back(this->actualCard->getCard_id());
             res.push_back(this->actualCard->getCard_type());
+            std::cout << res[0] << " | " << res[1] << std::endl;
         }
         return res;
     }

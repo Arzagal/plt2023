@@ -87,7 +87,6 @@ namespace render {
         if(this->gameState->get_state() == state::Card_effect) {
             std::vector<int> card = this->gameState->get_actual_card();
             if (!card.empty()) {
-                std::cout<<"IS NOT EMPTY\n";
                 this->draw_playing_card(card[0], card[1]);
             }
         }
@@ -159,7 +158,8 @@ namespace render {
 
     void Display::draw_playing_card(int CardId, int Cardtype) {
         int id = CardId+1;
-        if(CardId<1 || CardId  >17){
+        if(id<1 || id  >17){
+            std::cout  << "card id : " << id << std::endl;
             std::cerr << "Wrong ID : this card does not exist" << std::endl;
             return;
         }
@@ -170,10 +170,10 @@ namespace render {
             id += 17;
         }
         sf::Texture texture = this->getCardImg(id);
-        sf::Vector2f size = sf::Vector2f(62,100);
-        sf::Vector2f position;
+        sf::Vector2f size = sf::Vector2f(myLocations.get_card_width(),myLocations.get_card_height());
         CardPosition play= myLocations.get_playing_card();
-        position=play.get_position();
+        sf::Vector2f position=play.get_position();
+        std::cout << position.x << " | " << position.y << std::endl;
 
         this->draw(texture, size, position, 0);
 
@@ -192,7 +192,7 @@ namespace render {
 
     void Display::draw_player_character(int PlayerNum) {
         sf::Texture texture;
-        if(this->gameState->get_Player_liste()[PlayerNum]->isrevealed()) {
+        if(this->gameState->get_Player_liste()[PlayerNum]->isrevealed() || PlayerNum == this->playerNumber) {
             texture.loadFromFile(
                     "./ShadowHunter_Card/Role_Card/" + this->gameState->get_Player_liste()[PlayerNum]->getCharacter() +
                     ".png");

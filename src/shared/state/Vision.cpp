@@ -4,7 +4,6 @@
 
 namespace state{
     Vision::Vision(int id) : card_id(id) {
-        this->card_id = id;
         this->card_type = 2;
     }
 
@@ -72,5 +71,13 @@ namespace state{
             default:
                 break;
         }
+    }
+
+    int Vision::getCard_id() const {
+        return this->card_id;
+    }
+
+    int Vision::getCard_type() const {
+        return this->card_type;
     }
 }
