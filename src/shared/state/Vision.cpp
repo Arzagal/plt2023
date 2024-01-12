@@ -45,21 +45,25 @@ namespace state{
                 }
                 break;
             case 9:
-                if (targetPlayer->getTeams() == 1){
-                    game->add_wound(target, 1);
-                }
-                break;
             case 10:
-                if (targetPlayer->getTeams() == 0){
+                if (targetPlayer->getTeams() == 1){
                     game->add_wound(target, 1);
                 }
                 break;
             case 11:
+            case 12:
+                if (targetPlayer->getTeams() == 0){
+                    game->add_wound(target, 1);
+                }
+                break;
+            case 13:
+            case 14:
                 if (targetPlayer->getTeams() == 1){
                     game->heal(target, 1);
                 }
                 break;
-            case 12:
+            case 15:
+            case 16:
                 if (targetPlayer->getTeams() == 1 || targetPlayer->getTeams() == 0){
                     game->add_wound(target, 1);
                 }
