@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(firstPlayerTest){
     player.set_character(Franklin);
     BOOST_CHECK_EQUAL(player.getCharacter(), "Franklin");
     player.set_character(Fu_ka);
-    BOOST_CHECK_EQUAL(player.getCharacter(), "Fu_ka");
+    BOOST_CHECK_EQUAL(player.getCharacter(), "Fu-ka");
     player.set_character(Georges);
     BOOST_CHECK_EQUAL(player.getCharacter(), "Georges");
     player.set_character(Gregor);
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(firstPlayerTest){
     player.set_character(Liche);
     BOOST_CHECK_EQUAL(player.getCharacter(), "Liche");
     player.set_character(Loup_Garou);
-    BOOST_CHECK_EQUAL(player.getCharacter(), "Loup_garou");
+    BOOST_CHECK_EQUAL(player.getCharacter(), "Loup-Garou");
     player.set_character(Metamorphe);
     BOOST_CHECK_EQUAL(player.getCharacter(), "Metamorphe");
     player.set_character(Momie);

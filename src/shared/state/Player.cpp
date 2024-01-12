@@ -79,7 +79,7 @@ namespace state{
             case(state::Franklin) :
                 return "Franklin";
             case(state::Fu_ka) :
-                return "Fu_ka";
+                return "Fu-ka";
             case(state::Georges) :
                 return "Georges";
             case(state::Gregor) :
@@ -87,7 +87,7 @@ namespace state{
             case(state::Liche) :
                 return "Liche";
             case(state::Loup_Garou) :
-                return "Loup_garou";
+                return "Loup-Garou";
             case(state::Metamorphe) :
                 return "Metamorphe";
             case(state::Momie) :
