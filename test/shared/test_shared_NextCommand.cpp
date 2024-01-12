@@ -10,7 +10,7 @@ BOOST_AUTO_TEST_CASE(firstNextCommandTest){
     sf::Sprite mySprite=sf::Sprite();
     myGame.start_game();
     Display myDisplay=Display(window,mySprite,&myGame);
-    Engine myEngine= Engine(&myDisplay);
+    Engine myEngine= Engine(&myDisplay,&myGame,0);
     NextCommand next=NextCommand();
     next.execute(&myEngine);
 }

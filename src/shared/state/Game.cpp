@@ -138,8 +138,13 @@ namespace state{
             std::cout << "Invalid card target \n";
             return;
         }
+        if(this->actualCard == nullptr){
+            std::cout << "No card drawn! \n";
+            return;
+        }
+        std::cout << "Activating card effect with target " << target<< std::endl;
         this->actualCard->activate_effect(target, this);
-        this->actualCard = nullptr;
+//        this->actualCard = nullptr;
         std::cout << "Activating acard effect ! \n";
     }
 
@@ -236,4 +241,19 @@ namespace state{
             std::cout << "Winner team is : " << "Shadow" << std::endl;
         }
     }
+
+    std::vector<int> Game::get_actual_card() {
+        std::vector<int> res;
+        if(this->actualCard != nullptr){
+            res.push_back(this->actualCard->getCard_id());
+            res.push_back(this->actualCard->getCard_type());
+            std::cout << res[0] << " | " << res[1] << std::endl;
+        }
+        return res;
+    }
+
+    int Game::get_location_id(int location) {
+        return this->board->get_card_at_location(location);
+    }
+
 }

@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_CASE(firstAttackCommandTest){
     sf::RenderWindow window;
     sf::Sprite mySprite=sf::Sprite();
     Display myDisplay=Display(window,mySprite,&myGame);
-    Engine myEngine= Engine(&myDisplay);
+    Engine myEngine= Engine(&myDisplay,&myGame,0);
     AttackCommand atk= AttackCommand(1);
     atk.execute(&myEngine);
 }
