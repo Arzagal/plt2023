@@ -157,7 +157,7 @@ namespace render {
     }
 
     void Display::draw_playing_card(int CardId, int Cardtype) {
-        int id = CardId;
+        int id = CardId+1;
         if(CardId<1 || CardId  >17){
             std::cerr << "Wrong ID : this card does not exist" << std::endl;
             return;

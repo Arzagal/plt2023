@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(firstBoard){
     board-> move_player(0,4);
     std::vector <int> neighbours3 = board-> get_neighbours(num);
     int loc = board-> get_location(num);
-    BOOST_CHECK_EQUAL(loc, location);
+    BOOST_CHECK_EQUAL(loc, 4);
     BOOST_CHECK(board->are_neighbours(0,3));
     BOOST_TEST(1);
 }
