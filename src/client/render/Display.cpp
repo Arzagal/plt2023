@@ -69,7 +69,14 @@ namespace render {
                 this->draw_button(i);
             }
         }
-            window->display();
+
+        if(this->gameState->get_state() == state::Card_effect) {
+            std::vector<int> card = this->gameState->get_actual_card();
+            if (!card.empty()) {
+                this->draw_playing_card(card[0], card[1]);
+            }
+        }
+        window->display();
         return;
     }
 
@@ -148,8 +155,8 @@ namespace render {
         else if(Cardtype==1){
             id += 17;
         }
-//        sf::Texture texture = this->getCardImg(id);
-//        sf::Vector2f size = sf::Vector2f(62,100);
+        sf::Texture texture = this->getCardImg(id);
+        sf::Vector2f size = sf::Vector2f(62,100);
 //        sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
 //        this->draw(texture, size, position, 0);
 

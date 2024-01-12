@@ -7,6 +7,9 @@ BOOST_AUTO_TEST_CASE(firstDarknlightTest){
     darkn.set_card_type(0);
     int id = darkn.get_id ();
     int type = darkn.get_card_type();
+    Game *game = new Game();
+    game->start_game();
+    darkn.activate_effect(0, game);
     BOOST_CHECK_EQUAL(id, 12);
     BOOST_CHECK_EQUAL(type, 0);
     BOOST_CHECK(1);

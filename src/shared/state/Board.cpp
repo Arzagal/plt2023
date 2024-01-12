@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <chrono>
 #include <random>
+#include <iostream>
 #include "Board.h"
 namespace state {
     Board::Board(int len) {
@@ -13,16 +14,25 @@ namespace state {
             int randomInt = distribution(randomness);
             this->player_location.push_back(randomInt);
         }
+        this->random_init();
     }
 
-    void Board::random_init() { //TODO
+    void Board::random_init() {
+        for(int i =0; i<6; i++){
+            unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+            srand(seed);
+            std::default_random_engine randomness(seed);
+            std::uniform_int_distribution<int> distribution(0, 6-1);
+            // Generate a random integer.
+            int randomInt = rand()%6;
 
-        for(int i = 0; i< static_cast<int>(this->player_location.size()); i++){
-            int loc = rand()%6;
-            while(this->player_location[loc]!=0){
-                loc = rand()%6;
+            while(std::find(lineup.begin(), lineup.end(), randomInt) != lineup.end()){
+                seed = std::chrono::system_clock::now().time_since_epoch().count();
+                std::default_random_engine randomness2(seed);
+                randomInt = rand()%6;
             }
-            this->player_location[loc] = i;
+            lineup.push_back(randomInt);
+            std::cout << "Placed Card number " << randomInt << std::endl;
         }
     }
 
@@ -58,10 +68,11 @@ namespace state {
     }
 
     void Board::get_effect(int location, Game* game) {
-        if(location == 0 || location==1){
+        int card = lineup[location];
+        if(card == 0 || card==1){
             game->draw(0);
         }
-        else if(location == 2 || location==3){
+        else if(card == 2 || card==3){
             game->draw(1);
         }
         else{

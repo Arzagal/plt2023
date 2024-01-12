@@ -40,6 +40,7 @@ namespace state{
     int Player::get_number (){
         return this->number;
     }
+
     std::vector<Darknlight*> Player::get_equipped_card (){
         return this->equipped_card;
     }

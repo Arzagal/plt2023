@@ -12,7 +12,7 @@ make
 #firefox https://www.youtube.com/watch?v=dQw4w9WgXcQ &
 
 #This runs the test
-#make code-coverage
+make code-coverage
 
 #This open the code coverage summary
 #firefox code-coverage/index.html &

@@ -237,4 +237,14 @@ namespace state{
             std::cout << "Winner team is : " << "Shadow" << std::endl;
         }
     }
+
+    std::vector<int> Game::get_actual_card() {
+        std::vector<int> res;
+        if(this->actualCard != nullptr){
+            res.push_back(this->actualCard->getCard_id());
+            res.push_back(this->actualCard->getCard_type());
+        }
+        return res;
+    }
+
 }
