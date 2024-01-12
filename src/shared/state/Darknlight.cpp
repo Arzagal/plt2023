@@ -107,6 +107,7 @@ namespace state{
                 case 14:
                 case 15:
                 case 16:
+                case 17:
                         game->heal(game->get_active_player(), 2);
                     break;
 
