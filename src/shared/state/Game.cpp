@@ -9,6 +9,8 @@
 namespace state {
 
     Game::Game() : playing(0), turn(0), player_number(0), board(nullptr), deckL(nullptr), deckD(nullptr), deckV(nullptr) {
+        deckV = new DeckVision();
+        deckD = new DeckDark();
     }
 
     void Game::add_player(int team_min, int team_max) {
@@ -54,41 +56,48 @@ namespace state {
     }
     void Game::new_turn() {
         for (auto& player : playerListe) {
-            bool sameArea = false;
-            int target = 0;
-            int choice;
-            std::cout << "C'est au joueur " << player->get_number() << " de joueur." << std::endl;
-            std::cout << "Vous avez appuyé sur la touche entrer pour lancer les dés et vous déplacer :";
-            std::cin.ignore();
-            move_player(player->get_number(), player->get_location());
-            std::cout << "Pour activer l'effet de votre localisation taper 1 : ";
-            std::cin >> choice;
-            std::cin.ignore();
-            if (choice == 1){
-                player->active_board_effect(playerListe);
-            }
+            if (player->get_hp() > 0) {
+                bool sameArea = false;
+                int target = 0;
+                int choice;
+                std::cout << "C'est au joueur " << player->get_number() << " de joueur." << std::endl;
+                std::cout << "Vous avez appuyé sur la touche entrer pour lancer les dés et vous déplacer :";
+                std::cin.ignore();
+                move_player(player->get_number(), player->get_location());
+                std::cout << "Pour activer l'effet de votre localisation taper 1 : ";
+                std::cin >> choice;
+                std::cin.ignore();
+                if (choice == 1) {
+                    board->active_board_effect(player->get_number(), deckV, deckD, playerListe, player->get_location());
+                }else {
+                    std::cout << "Vous avez choisi de ne pas déclancher l'effet du lieu." << std::endl;
+                }
 
-            for (auto& Neighborplayer : playerListe) {
-                if (Neighborplayer != player){
-                    if (arePlayersAtSameLocation(player->get_location(), Neighborplayer->get_location())){
-                        std::cout << "Le joueur " << Neighborplayer->get_number() << " est dans le même secteur que vous." << std::endl;
-                        sameArea = true;
+                for (auto& Neighborplayer : playerListe) {
+                    if (Neighborplayer != player){
+                        if (arePlayersAtSameLocation(player->get_location(), Neighborplayer->get_location())){
+                            std::cout << "Le joueur " << Neighborplayer->get_number() << " est dans le même secteur que vous." << std::endl;
+                            sameArea = true;
+                        }
                     }
                 }
-            }
-            if (sameArea){
-                std::cout << "Des joueurs se trouvent dans votre zone qui voulez-vous attaquer ?\nEntrer le numéro du joueur que vous voulez attaquer : ";
-                std::cin >> target;
-                std::cin.ignore();
-                if (target == 0){
-                    std::cout << "Vous avez choisi de ne pas attaquer." << std::endl;
-                }else{
-                    attack(player->get_number(), target);
+                if (sameArea){
+                    std::cout << "Des joueurs se trouvent dans votre zone qui voulez-vous attaquer ?\nEntrer le numéro du joueur que vous voulez attaquer : ";
+                    std::cin >> target;
+                    std::cin.ignore();
+                    if (target == 0){
+                        std::cout << "Vous avez choisi de ne pas attaquer." << std::endl;
+                    }else{
+                        attack(player->get_number(), target);
+                    }
                 }
+                std::cout << std::endl;
+                std::cout << "Appuyer sur Entrer pour passer au joueur suivant :";
+                std::cin.ignore();
+                std::cout << "\033[2J\033[H";
+            }else{
+                player->set_location(0);
             }
-            
-
-            std::cout << std::endl;
         }
     }
 
@@ -162,7 +171,7 @@ namespace state {
             std::cin.ignore();
             std::cout << "\033[2J\033[H";
         }
-        
+            
     }
 
     void Game::move_player(int player_number, int location) {
@@ -271,6 +280,24 @@ namespace state {
         }
 
         return false;
+    }
+
+    bool Game::areAllHuntersDead() const {
+        for (const auto& player : playerListe) {
+            if (player->get_team() == Hunter && player->get_hp() > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool Game::areAllShadowsDead() const {
+        for (const auto& player : playerListe) {
+            if (player->get_team() == Shadow && player->get_hp() > 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
