@@ -54,6 +54,18 @@ namespace render {
         window->draw(text);
     }
 
+    void Display::draw_player_to_pawn() {
+        std::vector<CardPosition> playerCharacters=myLocations.get_characterCards();
+        sf::Texture pawnTexture;
+        sf::Vector2f size = sf::Vector2f(20,20);
+        for (int i = 0; i < 4; ++i) {
+            pawnTexture.loadFromFile("./ShadowHunter_Card/Board/Pawn_" + std::to_string(i+1) + ".png");
+            sf::Vector2f position;
+            position=playerCharacters[i].get_position();
+            this->draw(pawnTexture, size, position, 0);
+        }
+    }
+
     void Display::refresh(){
         window->clear();
         window->draw(this->background);
@@ -68,6 +80,8 @@ namespace render {
             for (int i = 1; i < 4; i++) {
                 this->draw_button(i);
             }
+            this->draw_player_to_pawn();
+
         }
 
         if(this->gameState->get_state() == state::Card_effect) {
@@ -77,7 +91,6 @@ namespace render {
             }
         }
         window->display();
-        return;
     }
 
     sf::Texture Display::getCardImg(int cardId) {
