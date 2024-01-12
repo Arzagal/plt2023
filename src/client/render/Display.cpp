@@ -87,6 +87,7 @@ namespace render {
         if(this->gameState->get_state() == state::Card_effect) {
             std::vector<int> card = this->gameState->get_actual_card();
             if (!card.empty()) {
+                std::cout<<"IS NOT EMPTY\n";
                 this->draw_playing_card(card[0], card[1]);
             }
         }
@@ -170,8 +171,11 @@ namespace render {
         }
         sf::Texture texture = this->getCardImg(id);
         sf::Vector2f size = sf::Vector2f(62,100);
-//        sf::Vector2f position = myLocations.get_cardsOnBoard().at(id).get_position();
-//        this->draw(texture, size, position, 0);
+        sf::Vector2f position;
+        CardPosition play= myLocations.get_playing_card();
+        position=play.get_position();
+
+        this->draw(texture, size, position, 0);
 
     }
 
