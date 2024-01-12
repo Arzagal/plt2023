@@ -8,7 +8,7 @@
 
 namespace render{
 
-    Const::Const() {
+    Const::Const() : playingCard(0,0,0){
         std::ifstream file("./ShadowHunter_Card/Consts");
         std::string line;
         int groupNum = 1;
@@ -109,6 +109,13 @@ namespace render{
 
 
                 }
+
+            }
+            else if(line=="Playing Card"){
+                std::istringstream iss(line);
+                float pixelX, pixelY,angle;
+                iss >> pixelX >> pixelY>> angle ;
+                playingCard= CardPosition(pixelX,pixelY,angle);
             }
         }
         file.close();
@@ -144,6 +151,10 @@ namespace render{
 
     std::vector<ButtonPosition> Const::get_buttons() {
         return buttons;
+    }
+
+    CardPosition Const::get_playing_card() {
+        return playingCard;
     }
     
 
