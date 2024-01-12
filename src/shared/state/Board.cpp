@@ -21,14 +21,11 @@ namespace state {
         for(int i =0; i<6; i++){
             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
             srand(seed);
-            std::default_random_engine randomness(seed);
             std::uniform_int_distribution<int> distribution(0, 6-1);
             // Generate a random integer.
             int randomInt = rand()%6;
 
             while(std::find(lineup.begin(), lineup.end(), randomInt) != lineup.end()){
-                seed = std::chrono::system_clock::now().time_since_epoch().count();
-                std::default_random_engine randomness2(seed);
                 randomInt = rand()%6;
             }
             lineup.push_back(randomInt);

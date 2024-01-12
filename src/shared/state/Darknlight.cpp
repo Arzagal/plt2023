@@ -28,10 +28,8 @@ namespace state{
                 case 4:
                 case 5:
                 case 6:
-                    if (target != NULL) {
                         game->add_wound(target, 2);
                         game->heal(game->get_active_player(), 2);
-                    }
                     break;
                 case 7:
                 case 8:
@@ -89,7 +87,7 @@ namespace state{
                 case 9:
                     choice = rand() % 2;
                     if (choice == 0){
-                            game->heal(target, 2);
+                        game->heal(target, 2);
                     }else {
                         game->heal(game->get_active_player(), 2);
                     }
