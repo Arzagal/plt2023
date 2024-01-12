@@ -248,4 +248,8 @@ namespace state{
         return res;
     }
 
+    int Game::get_location_id(int location) {
+        return this->board->get_card_at_location(location);
+    }
+
 }

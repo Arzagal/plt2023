@@ -182,7 +182,8 @@ namespace render {
     void Display::draw_board() {
         for(int i =0; i<6;i++){
             sf::Texture texture;
-            texture.loadFromFile("./ShadowHunter_Card/Role_Card/Bob_1.png");
+            int id = this->gameState->get_location_id(i);
+            texture.loadFromFile("./ShadowHunter_Card/Board/Location_" + std::to_string(id) + ".png");
             sf::Vector2f size = sf::Vector2f(myLocations.get_card_width(),myLocations.get_card_height());
             sf::Vector2f position = this->myLocations.get_cardsOnBoard()[i].get_position();
             float angle = this->myLocations.get_cardsOnBoard()[i].getAngle();

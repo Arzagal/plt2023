@@ -89,4 +89,8 @@ namespace state {
         }
         return false;
     }
+
+    int Board::get_card_at_location(int location) {
+        return this->lineup[location];
+    }
 }
