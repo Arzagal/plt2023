@@ -24,6 +24,7 @@ BOOST_AUTO_TEST_CASE(DisplayTest){
     display.draw_playing_card(1,1);
     display.draw_playing_card(1,2);
     display.draw_playing_card(-1,0);
+    display.write_state();
     display.stateChanged(display.getGameState()->get_state(),0);
     BOOST_CHECK(1);
 }

@@ -15,6 +15,7 @@ add_custom_test(shared_Engine)
 add_custom_test(shared_AttackCommand)
 add_custom_test(shared_MoveCommand)
 add_custom_test(shared_NextCommand)
+add_custom_test(shared_CardCommand)
 
 
 

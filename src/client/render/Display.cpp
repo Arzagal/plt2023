@@ -1,6 +1,7 @@
 #include <render/Display.h>
 #include <iostream>
 #include <thread>
+#include <string>
 
 namespace render {
 
@@ -14,6 +15,43 @@ namespace render {
 
     state::Game *Display::getGameState() {
         return gameState;
+    }
+    void Display::write_state() {
+        sf::Text text;
+        sf::Font font;
+        std::string msg;
+        state::State myState=gameState->get_state();
+        switch (myState) {
+            case state::Playing:
+                msg="Playing";
+                break;
+            case state::Move:
+                msg="Move";
+                break;
+            case state::Starting:
+                msg="Starting";
+                break;
+            case state::Location_effect:
+                msg="Location_effect";
+                break;
+            case state::Attack:
+                msg="Attack";
+                break;
+            case state::Finished:
+                msg="Finished";
+                break;
+            case state::Card_effect:
+                msg="Card_effect";
+                break;
+
+        }
+        font.loadFromFile("./ShadowHunter_Card/arial.ttf");
+        text.setFont(font);
+        text.setString(msg);
+        text.setCharacterSize(24);
+        text.setFillColor(sf::Color::White);
+        text.setPosition(1720,1050);
+        window->draw(text);
     }
 
     void Display::refresh(){
@@ -166,6 +204,7 @@ namespace render {
 
     }
     void Display::draw(sf::Texture texture, sf::Vector2f size, sf::Vector2f position, float angle) { //Function to draw the given image on a certain position
+
         sf::Sprite sprite;
         sprite.setTexture(texture);
         sprite.setScale(size.x / texture.getSize().x, size.y/ texture.getSize().y);
@@ -174,6 +213,7 @@ namespace render {
         sprite.setOrigin(bounds.width / 2, bounds.height / 2);
         sprite.setPosition(position);
         window->draw(sprite);
+        this->write_state();
     }
 
 
